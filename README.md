@@ -34,16 +34,16 @@
 - コメント削除機能
 
 ## カタログ設計
-https://docs.google.com/spreadsheets/d/1VvgNPUUB20Oxnky6gAsuBK0OFobkphGCzxEmo9hG0fc/edit#gid=414955773
+https://docs.google.com/spreadsheets/d/1VvgNPUUB20Oxnky6gAsuBK0OFobkphGCzxEmo9hG0fc/edit?usp=sharing
 
 ## テーブル定義
-https://docs.google.com/spreadsheets/d/1VvgNPUUB20Oxnky6gAsuBK0OFobkphGCzxEmo9hG0fc/edit#gid=2028546140
+https://docs.google.com/spreadsheets/d/1VvgNPUUB20Oxnky6gAsuBK0OFobkphGCzxEmo9hG0fc/edit?usp=sharing
 
 ## 画面遷移図
-https://docs.google.com/spreadsheets/d/1GHnddGJTvr99qLWUOB7NG3VZrQ7vbJRwDpFCJiPr5PM/edit#gid=0
+https://docs.google.com/spreadsheets/d/1GHnddGJTvr99qLWUOB7NG3VZrQ7vbJRwDpFCJiPr5PM/edit?usp=sharing
 
 ## 画面ワイヤーフレーム
-https://docs.google.com/spreadsheets/d/1ByrjgM3FThwsXyLk55-oAcw17aOEIaH8-ANKmjKsOUs/edit#gid=1329953527
+https://docs.google.com/spreadsheets/d/1ByrjgM3FThwsXyLk55-oAcw17aOEIaH8-ANKmjKsOUs/edit?usp=sharing
 
 ## 使用予定gem
 - carrierwave
