@@ -34,7 +34,7 @@
 - コメント削除機能
 
 ## カタログ設計
-https://docs.google.com/spreadsheets/d/1VvgNPUUB20Oxnky6gAsuBK0OFobkphGCzxEmo9hG0fc/edit?usp=sharing
+https://docs.google.com/spreadsheets/d/1Qz7Ro1XFWc_9SWmaCtucWo2CwVwM92l0KC5T8xgpcqs/edit?usp=sharing
 
 ## テーブル定義
 https://docs.google.com/spreadsheets/d/1VvgNPUUB20Oxnky6gAsuBK0OFobkphGCzxEmo9hG0fc/edit?usp=sharing
