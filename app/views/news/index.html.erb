@@ -1,0 +1,16 @@
+<h1>News#index</h1>
+<table>
+  <% @top_headlines.each do |news| %>
+  <tr>
+    <td><%= news.title %></td>
+    <td><%= news.publishedAt %></td>
+    <td>
+      <% if news.urlToImage.nil? %>
+        <%= image_tag 'atlas.jpg', size: "150x84" %>
+      <% else %>
+        <%= image_tag news.urlToImage, size: "150x84" %>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+</table>
