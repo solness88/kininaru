@@ -32,6 +32,10 @@
   - 作成された「気になるニュース」にコメントを追加していく機能
 - コメント編集機能
 - コメント削除機能
+- AWSデプロイ
+- NEWS APIでニュース一覧を取得
+- LINE APIで気になるニュースをLINEのグループに投稿
+
 
 ## カタログ設計
 https://docs.google.com/spreadsheets/d/1Qz7Ro1XFWc_9SWmaCtucWo2CwVwM92l0KC5T8xgpcqs/edit?usp=sharing
@@ -46,11 +50,5 @@ https://docs.google.com/spreadsheets/d/1GHnddGJTvr99qLWUOB7NG3VZrQ7vbJRwDpFCJiPr
 https://docs.google.com/spreadsheets/d/1ByrjgM3FThwsXyLk55-oAcw17aOEIaH8-ANKmjKsOUs/edit?usp=sharing
 
 ## 使用予定gem
-- carrierwave
-- mini_magick
-
-## その他使用予定の技術
-- AWSデプロイ
-- コメント機能
-- NEWS API
-- LINE API
+- carrierwave（画像アップロード）
+- mini_magick（アップロードした画像ファイルのサイズを変更）
