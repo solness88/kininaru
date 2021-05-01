@@ -11,6 +11,14 @@
         <%= image_tag news.urlToImage, size: "150x84" %>
       <% end %>
     </td>
+    <td><%= button_to '気になる', {controller: 'news', action: 'create'},
+                                 {params: {
+                                          title: news.title,
+                                          link: news.publishedAt,
+                                          image: news.urlToImage
+                                          }
+                                  } %>
+    </td>
   </tr>
   <% end %>
 </table>
