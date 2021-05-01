@@ -4,12 +4,24 @@
     <title>Kininaru</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header>
+      <ul>
+        <li><a href="#">Bootstrapテキストページ</a></li>
+        <li><a href="#">トップページ</a></li>
+      </ul>
+    </header>
+
     <%= yield %>
+
+    <footer>
+      <p>気になるニュース</p>
+      <p>© 2021 Kininaru News</p>
+    </footer>
   </body>
 </html>

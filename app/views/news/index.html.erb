@@ -1,24 +1,34 @@
 <h1>News#index</h1>
-<table>
-  <% @top_headlines.each do |news| %>
-  <tr>
-    <td><%= news.title %></td>
-    <td><%= news.publishedAt %></td>
-    <td>
-      <% if news.urlToImage.nil? %>
-        <%= image_tag 'atlas.jpg', size: "150x84" %>
-      <% else %>
-        <%= image_tag news.urlToImage, size: "150x84" %>
+<div class="container">
+  <div class="row">
+    <div class="toppage_kininaru">
+      <% @news.each do |new| %>
+      <%= new.title %>
+
+
       <% end %>
-    </td>
-    <td><%= button_to '気になる', {controller: 'news', action: 'create'},
+    </div>
+
+
+
+    <div class="toppage_articles">
+      <% @top_headlines.each do |news| %>
+      <div class="toppage_article">
+          <% if news.urlToImage.nil? %>
+            <%= image_tag 'atlas.jpg', class:"article_image" %>
+          <% else %>
+            <%= image_tag news.urlToImage, class:"article_image"%>
+          <% end %>
+        <%= news.title %>
+        <%= button_to '気になる', {controller: 'news', action: 'create'},
                                  {params: {
                                           title: news.title,
                                           link: news.publishedAt,
                                           image: news.urlToImage
                                           }
-                                  } %>
-    </td>
-  </tr>
-  <% end %>
-</table>
+                                 } %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
