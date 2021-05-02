@@ -8,10 +8,16 @@ class NewsController < ApplicationController
   end
 
   def create
-    New.create(title: params[:title], link: params[:link], image: params[:image])
+    New.create(news_params)
     redirect_to news_index_path
   end
 
+  def show
+  end
 
+  private
+  def news_params
+    params.permit(:title, :link, :image)
+  end
 
 end

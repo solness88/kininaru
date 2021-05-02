@@ -22,12 +22,74 @@
       </div>
       <% end %>
     </div>
+
+
+
     <div class="toppage_kininaru col-lg-3">
       <% @news.each do |new| %>
       <div class="toppage_kininaru_article">
-        <div><%= link_to new.title, new.link, class:"kininaru_article_text" %></div>
-        <div><%= image_tag new.image, class:"kininaru_image" %></div>
+        <div>
+          <div><%= link_to new.title, new.link, class:"kininaru_article_text" %></div>
+          <div><%= link_to '詳細を確認する', news_path(new.id) %></div>
+        </div>
+        <div>
+          <div><%= image_tag new.image, class:"kininaru_image" %></div>
+        </div>
       </div>
+
+
+
+
+      <!-- ここからモーダル -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">
+        押すと表示されます。
+      </button>
+      <!-- モーダルの設定 -->
+      <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+        <!--以下modal-dialogのCSSの部分で modal-lgやmodal-smを追加するとモーダルのサイズを変更することができる-->
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="Modal"><%= new.title %></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              モーダルのコンテンツを表示します。このモーダルはサイズを大きくしています。
+              またレシポンシブデザインに対応しているので画面を小さくすると、モーダルも自動で縮小されます
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+              <button type="button" class="btn btn-primary">保存</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ここまでモーダル -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <% end %>
     </div>
     <div class="col-lg-1">
