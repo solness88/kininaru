@@ -1,4 +1,3 @@
-<h1>News#index</h1>
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-1">
@@ -28,21 +27,22 @@
       <div class="toppage_kininaru_article">
         <div>
           <div><%= link_to new.title, new.link, class:"kininaru_article_text" %></div>
-          <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#Modal">
-            押すと表示されます。
+          <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#Modal<%= new.id %>">
+            コメント
           </button>
         </div>
         <div>
           <div><%= image_tag new.image, class:"kininaru_image" %></div>
         </div>
-      </div>
 
-        <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
-          <!--以下modal-dialogのCSSの部分で modal-lgやmodal-smを追加するとモーダルのサイズを変更することができる-->
-          <div class="modal-dialog modal-lg" role="document">
+        <div class="modal fade" id="Modal<%= new.id %>" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="Modal">モーダルのタイトルが表示されます</h5>
+                <h5 class="modal-title" id="Modal">
+                  <div class="d-flex align-items-end"><%= link_to new.title, new.link %></div>
+                  <div><%= image_tag new.image, class:"kininaru_image modal_image" %></div>
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -58,9 +58,7 @@
             </div>
           </div>
         </div>
-
-
-
+      </div>
 
 
       <% end %>
