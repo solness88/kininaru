@@ -1,26 +1,4 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-1">
-    </div>
-    <div class="toppage_articles col-lg-7">
-      <% @top_headlines.each do |news| %>
-      <div class="toppage_article">
-          <% if news.urlToImage.nil? %>
-            <%= image_tag 'atlas.jpg', class:"article_image" %>
-          <% else %>
-            <%= image_tag news.urlToImage, class:"article_image" %>
-          <% end %>
-        <%= link_to news.title, news.url, class:"article"%>
-        <%= button_to '気になる', {controller: 'news', action: 'create'},
-                                 {params: {
-                                          title: news.title,
-                                          link: news.url,
-                                          image: news.urlToImage
-                                          },
-                                  class:"kininaru_button"} %>
-      </div>
-      <% end %>
-    </div>
+
 
     <div class="toppage_kininaru col-lg-3">
       <% @news.each do |new| %>
@@ -59,11 +37,5 @@
           </div>
         </div>
       </div>
-
-
       <% end %>
     </div>
-    <div class="col-lg-1">
-    </div>
-  </div>
-</div>

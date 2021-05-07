@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :newsapi
   def index
   end
 
