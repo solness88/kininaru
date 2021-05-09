@@ -1,4 +1,5 @@
-class UsersController < ApplicationController
+class Admin::UsersController < ApplicationController
+
   before_action :newsapi
   skip_before_action :login_required, only: [:new, :create]
 
