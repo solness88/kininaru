@@ -1,6 +1,7 @@
 class Admin::UsersController < ApplicationController
 
   before_action :newsapi
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   skip_before_action :login_required, only: [:new, :create]
 
   def index
@@ -20,8 +21,23 @@ class Admin::UsersController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @user.update(user_params)
+      redirect_to users_path, notice: "ユーザーを編集しました"
+    else
+      render :edit
+    end
+  end
+
   def show
-    @user = User.find(params[:id])
+  end
+
+  def destroy
+    @user.destroy
+    redirect_to admin_users_path, notice:"ユーザーを削除しました"
   end
 
   private
@@ -29,5 +45,10 @@ class Admin::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :image, :image_cache)
   end
+
+  def set_user
+    @user = User.find(params[:id])
+  end
+
 
 end
