@@ -14,3 +14,117 @@
  *= require_tree .
  *= require_self
  */
+
+ html {
+   position: relative;
+   min-height: 100%;
+ }
+ body {
+   text-align: center;
+ }
+ li{
+     list-style:none;
+ }
+ ul{
+     padding:0;
+ }
+ .title{
+     font-size:20px;
+     font-weight:bold;
+     text-align:center;
+ }
+ .menu li {
+     background-color:#012F4B;
+     color:#fff;
+     padding:5% 10%;
+     text-align:center;
+ }
+ .contents li{
+     background-color:#F3A7AB;
+     color:#fff;
+     padding:10% 10%;
+     box-sizing: border-box;
+     border: solid 1px #fff;
+ }
+ .topic li{
+     margin:1%;
+     border-bottom: dotted 1px #333333;
+ }
+ .container{
+     margin-top:20px;
+     padding-bottom: 100px;
+ }
+
+ header {
+   width: 100%;
+   background-color: #2c3e50;
+   height: 54px;
+   margin: 0;
+ }
+ header ul {
+   margin: 0 auto;
+   list-style: none;
+ }
+ header ul a {
+   display: block;
+   padding: 15px;
+   text-decoration: none;
+   color: white;
+ }
+ header li {
+   width: auto;
+ }
+ header ul:after {
+   content: "";
+   display: block;
+   clear: both;
+ }
+
+ .header_items{
+   display: flex;
+ }
+
+ .toppage_articles{
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: flex-wrap;
+ }
+
+
+
+ .toppage_article{
+   width: 18rem;
+   display: flex;
+   flex-direction: column;
+   margin: 1.5rem;
+   border: 1px solid #000000;
+   border-radius: 10px;
+ }
+
+ .article_image{
+   width: 100%;
+   height: 10rem;
+   border-radius: 10px 10px 0 0;
+ }
+
+ .article{
+   overflow: hidden;
+   line-height:1.4;
+   height:5.6em;
+ }
+
+ .kininaru_button{
+   margin:1rem 0 1rem 0;
+ }
+
+ footer {
+   width: 100%;
+   background-color:#2c3e50;
+   padding: 20px 0 10px 0;
+   color: white;
+   margin: auto;
+   padding-bottom: 10px;
+   font-size: 12px;
+   position: absolute;
+   bottom: 0;
+ }

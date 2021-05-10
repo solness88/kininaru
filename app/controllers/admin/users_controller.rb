@@ -15,20 +15,9 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to users_path
+      redirect_to admin_users_path
     else
       render :new
-    end
-  end
-
-  def edit
-  end
-
-  def update
-    if @user.update(user_params)
-      redirect_to users_path, notice: "ユーザーを編集しました"
-    else
-      render :edit
     end
   end
 
@@ -43,7 +32,7 @@ class Admin::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :image, :image_cache)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :image, :image_cache, :admin)
   end
 
   def set_user
