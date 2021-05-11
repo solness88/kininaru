@@ -82,6 +82,11 @@
 
  .header_items{
    display: flex;
+   justify-content: space-between;
+}
+
+ .header_item_user{
+   margin-left: auto;
  }
 
  .toppage_articles{

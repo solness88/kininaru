@@ -14,9 +14,9 @@
       <ul class="header_items">
         <li class="header_item"><%= link_to "気になるニュース", news_index_path %></li>
         <% if current_user && current_user.admin? %>
-          <li class="header_item"><%= link_to "ユーザーを見る", admin_users_path %></li>
+          <li class="header_item_user "><%= link_to "ユーザーを見る", admin_users_path %></li>
         <% else %>
-          <li class="header_item"><%= link_to "ユーザーを見る", users_path %></li>
+          <li class="header_item_user"><%= link_to "ユーザーを見る", users_path %></li>
         <% end %>
         <li class="header_item"><a href="#">チャット</a></li>
         <% if logged_in? %>
@@ -40,13 +40,18 @@
                 <%= image_tag news.urlToImage, class:"article_image" %>
               <% end %>
             <%= link_to news.title, news.url, class:"article"%>
-            <%= button_to '気になる', {controller: '/news', action: 'create'},
-                                     {params: {
-                                              title: news.title,
-                                              link: news.url,
-                                              image: news.urlToImage
-                                              },
-                                      class:"kininaru_button"} %>
+            <% if logged_in? %>
+              <%= button_to '気になる', {controller: '/news', action: 'create'},
+                                       {params: {
+                                                new: {
+                                                      title: news.title,
+                                                      link: news.url,
+                                                      image: news.urlToImage,
+                                                      user_id: current_user.id
+                                                    },
+                                                },
+                                        class:"kininaru_button"} %>
+            <% end %>
           </div>
           <% end %>
         </div>
