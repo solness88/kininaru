@@ -10,10 +10,8 @@ class NewsController < ApplicationController
     redirect_to news_index_path
   end
 
-  def show
-  end
-
   private
+
   def news_params
     params.require(:new).permit(:title, :link, :image, :user_id)
   end

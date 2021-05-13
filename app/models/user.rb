@@ -7,5 +7,5 @@ class User < ApplicationRecord
   before_validation { email.downcase! }
   has_secure_password
   mount_uploader :image, ImageUploader
-  has_many :news
+  has_many :news, dependent: :destroy
 end
