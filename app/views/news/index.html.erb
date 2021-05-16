@@ -29,12 +29,12 @@
                 <p>コメント一覧（ここから下の内容が重要）</p>
                 <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
                 <div id="comments_area">
-                  <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
                   <%= render partial: 'comments/index', locals: { comments: new.comments, new: new } %>
                 </div>
+
                 <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
                 <%= render partial: 'comments/form', locals: { comment: new.comments.build, new: new } %>
-                <%= link_to '編集', edit_news_path(new) %> |
+                <%= link_to '編集', edit_news_path(new) %>
                 <%= link_to '戻る', news_index_path %>
               </div>
               <div class="modal-footer">
