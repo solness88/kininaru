@@ -1,4 +1,4 @@
-
-$("#comments_area").html("<%= j(render 'comments/index', { comments: @comment.new.comments, new: @comment.new }) %>");
+id = <%= @new.id %>
+$("#comments_area" + id).html("<%= j(render 'comments/index', { comments: @comment.new.comments, new: @comment.new }) %>");
 $("textarea").val('');
 $("#notice").html("<%= j flash[:notice] %>");
