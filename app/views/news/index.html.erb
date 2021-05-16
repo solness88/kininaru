@@ -26,14 +26,30 @@
                 </button>
               </div>
               <div class="modal-body">
-                <p>コメント一覧（ここから下の内容が重要）</p>
+                <p>
+                  <%= image_tag new.user.image.url, class:"comment_user_image" %>
+                  <%= new.user.name %>さんのコメント
+                  <input type="button" class="comment_form_btn" value="コメント欄">
+                </p>
                 <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
                 <div id="comments_area<%= new.id %>">
                   <%= render partial: 'comments/index', locals: { comments: new.comments, new: new } %>
                 </div>
 
                 <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
-                <%= render partial: 'comments/form', locals: { comment: new.comments.build, new: new } %>
+                <div style="display: none" class="comments_form<%= new.id %>">
+                  <%= render partial: 'comments/form', locals: { comment: new.comments.build, new: new } %>
+                </div>
+
+                <!-- コメント入力欄の表示・非表示を切り替え -->
+                <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+                </script>
+                <script>
+                  $('.comment_form_btn').click(function(){
+                    $('.comments_form<%= new.id %>').fadeToggle('slow');
+                  });
+                </script>
+
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>

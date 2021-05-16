@@ -79,6 +79,11 @@
    display: block;
    clear: both;
  }
+ .header_hello{
+   display: block;
+   padding: 15px;
+   color: white;
+ }
 
  .header_items{
    display: flex;
