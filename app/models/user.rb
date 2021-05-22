@@ -10,4 +10,7 @@ class User < ApplicationRecord
   has_many :news, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorite_news, through: :favorites, source: :new
+  def favorited_by?(new_id)
+    favorites.where(new_id: new_id).exists?
+  end
 end
