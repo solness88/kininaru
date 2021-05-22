@@ -1,14 +1,24 @@
 class ApplicationController < ActionController::Base
 
+  before_action :login_required
   protect_from_forgery with: :exception
   include SessionsHelper
+  require 'uri'
+  require 'net/http'
+  require 'openssl'
+  require "json"
 
   def newsapi
-    newsapi = News.new("840742eb9a874490b37a04e08b45c848")
-    @top_headlines = newsapi.get_top_headlines(language: 'en')
+    url = URI("https://free-news.p.rapidapi.com/v1/search?q=US China COVID Tech Biden&lang=en&page=1&page_size=25")
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    request = Net::HTTP::Get.new(url)
+    request["x-rapidapi-key"] = ENV['FreeNewsAPI_Key']
+    request["x-rapidapi-host"] = 'free-news.p.rapidapi.com'
+    response = http.request(request)
+    @hash = JSON.parse(response.body)
   end
-
-  before_action :login_required
 
   private
 

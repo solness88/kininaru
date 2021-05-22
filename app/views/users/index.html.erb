@@ -4,7 +4,7 @@
   <div class="user_index row">
     <div class="col-sm-1"></div>
     <div><%= image_tag user.image.url, class:"user_image col-sm-4" %></div>
-    <div class="user_name col-sm-6"><%= user.name %></div>
+    <div class="user_name col-sm-6"><%= link_to user.name, user_path(user.id) %></div>
     <div class="col-sm-1"></div>
   </div>
   <% end %>

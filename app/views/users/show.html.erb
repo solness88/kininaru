@@ -1,2 +1,202 @@
+<div class="toppage_kininaru col-lg-3">
 <h1><%= @user.name %>のページ</h1>
-<p>メールアドレス: <%= @user.email %></p>
+
+  <div class="accordion" id="accordion-4">
+    <div class="card">
+      <div class="card-header" id="header-4a">
+        <button class="btn btn-link" type="button"
+            data-toggle="collapse" data-target="#card-4a"
+            aria-expanded="true" aria-controls="card-4a">
+            気になるニュース
+        </button>
+      </div>
+      <div id="card-4a" class="collapse"
+        aria-labelledby="header-4a" data-parent="#accordion-4">
+        <div class="card-body">
+
+
+            <% @user_news.each do |user_news| %>
+            <div class="toppage_kininaru_article">
+              <div>
+                <div><%= link_to user_news.title, user_news.link, class:"kininaru_article_text" %></div>
+                <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#Modal<%= user_news.id %>">
+                  コメント
+                </button>
+              </div>
+              <div>
+                <div><%= image_tag user_news.image, class:"kininaru_image" %></div>
+              </div>
+
+              <div class="modal fade" id="Modal<%= user_news.id %>" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="Modal">
+                        <div class="d-flex align-items-end"><%= link_to user_news.title, user_news.link %></div>
+                        <div><%= image_tag user_news.image, class:"kininaru_image modal_image" %></div>
+                      </h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>
+                        <%= image_tag user_news.user.image.url, class:"comment_user_image" %>
+                        <%= user_news.user.name %>さんのコメント
+                        <input type="button" class="comment_form_btn" value="コメント欄">
+                      </p>
+                      <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
+                      <div id="comments_area<%= user_news.id %>">
+                        <%= render partial: 'comments/index', locals: { comments: user_news.comments, new: user_news } %>
+                      </div>
+                      <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
+                      <div style="display: none" class="comments_form<%= user_news.id %>">
+                        <%= render partial: 'comments/form', locals: { comment: user_news.comments.build, new: user_news } %>
+                      </div>
+
+                      <!-- コメント入力欄の表示・非表示を切り替え -->
+                      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+                      </script>
+                      <script>
+                        $('.comment_form_btn').click(function(){
+                          $('.comments_form<%= user_news.id %>').fadeToggle('slow');
+                        });
+                      </script>
+
+                      <div class="testtesttest">
+                      <% @favorite = current_user.favorites.find_by(new_id: user_news.id) %>
+                      <% unless user_news.user_id == current_user.id %>
+                        <% if @favorite.present? %>
+                          <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+                        <% else %>
+                          <%= link_to 'お気に入りする', favorites_path(new_id: user_news.id), method: :post, class: 'btn btn-primary' %>
+                        <% end %>
+                      <% end %>
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                      <button type="button" class="btn btn-primary">保存</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="card">
+        <div class="card-header" id="header-4b">
+          <button class="btn btn-link" type="button"
+              data-toggle="collapse" data-target="#card-4b"
+              aria-expanded="false" aria-controls="card-4b">
+              お気に入りしたニュース
+          </button>
+        </div>
+        <div id="card-4b" class="collapse"
+            aria-labelledby="header-4b" data-parent="#accordion-4">
+          <div class="card-body">
+
+
+
+
+
+            <% @favorite_news.each do |user_news| %>
+            <div class="toppage_kininaru_article">
+              <div>
+                <div><%= link_to user_news.title, user_news.link, class:"kininaru_article_text" %></div>
+                <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#Modal<%= user_news.id %>">
+                  コメント
+                </button>
+              </div>
+              <div>
+                <div><%= image_tag user_news.image, class:"kininaru_image" %></div>
+              </div>
+
+              <div class="modal fade" id="Modal<%= user_news.id %>" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="Modal">
+                        <div class="d-flex align-items-end"><%= link_to user_news.title, user_news.link %></div>
+                        <div><%= image_tag user_news.image, class:"kininaru_image modal_image" %></div>
+                      </h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>
+                        <%= image_tag user_news.user.image.url, class:"comment_user_image" %>
+                        <%= user_news.user.name %>さんのコメント
+                        <input type="button" class="comment_form_btn" value="コメント欄">
+                      </p>
+                      <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
+                      <div id="comments_area<%= user_news.id %>">
+                        <%= render partial: 'comments/index', locals: { comments: user_news.comments, new: user_news } %>
+                      </div>
+                      <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
+                      <div style="display: none" class="comments_form<%= user_news.id %>">
+                        <%= render partial: 'comments/form', locals: { comment: user_news.comments.build, new: user_news } %>
+                      </div>
+
+                      <!-- コメント入力欄の表示・非表示を切り替え -->
+                      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+                      </script>
+                      <script>
+                        $('.comment_form_btn').click(function(){
+                          $('.comments_form<%= user_news.id %>').fadeToggle('slow');
+                        });
+                      </script>
+
+                      <div class="testtesttest">
+                      <% @favorite = current_user.favorites.find_by(new_id: user_news.id) %>
+                      <% unless user_news.user_id == current_user.id %>
+                        <% if @favorite.present? %>
+                          <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+                        <% else %>
+                          <%= link_to 'お気に入りする', favorites_path(new_id: user_news.id), method: :post, class: 'btn btn-primary' %>
+                        <% end %>
+                      <% end %>
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                      <button type="button" class="btn btn-primary">保存</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -100,8 +100,6 @@
    justify-content: flex-wrap;
  }
 
-
-
  .toppage_article{
    width: 18rem;
    display: flex;
@@ -109,7 +107,18 @@
    margin: 1.5rem;
    border: 1px solid #000000;
    border-radius: 10px;
- }
+   box-shadow: 10px 10px 7px rgba(0,0,0,0.4);
+}
+
+.toppage_article:hover{
+  width: 18rem;
+  display: flex;
+  flex-direction: column;
+  margin: 1.5rem;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  box-shadow: 10px 10px 4px rgba(0,0,0,0.6);
+}
 
  .article_image{
    width: 100%;

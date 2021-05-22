@@ -8,4 +8,6 @@ class User < ApplicationRecord
   has_secure_password
   mount_uploader :image, ImageUploader
   has_many :news, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_news, through: :favorites, source: :new
 end

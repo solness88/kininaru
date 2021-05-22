@@ -35,21 +35,21 @@
         <div class="col-lg-1">
         </div>
         <div class="toppage_articles col-lg-7">
-          <% @top_headlines.each do |news| %>
+          <% @hash["articles"].each do |news| %>
           <div class="toppage_article">
-              <% if news.urlToImage.nil? %>
+              <% if news["media"].nil? %>
                 <%= image_tag 'atlas.jpg', class:"article_image" %>
               <% else %>
-                <%= image_tag news.urlToImage, class:"article_image" %>
+                <%= image_tag news["media"], class:"article_image" %>
               <% end %>
-            <%= link_to news.title, news.url, class:"article"%>
+            <%= link_to news["title"], news["link"], class:"article"%>
             <% if logged_in? %>
               <%= button_to '気になる', {controller: '/news', action: 'create'},
                                        {params: {
                                                 new: {
-                                                      title: news.title,
-                                                      link: news.url,
-                                                      image: news.urlToImage,
+                                                      title: news["title"],
+                                                      link: news["link"],
+                                                      image: news["media"],
                                                       user_id: current_user.id
                                                     },
                                                 },
