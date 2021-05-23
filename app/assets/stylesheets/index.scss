@@ -8,6 +8,11 @@
   line-height:1.4;
   height:10rem;
   margin: 1.5rem;
+  opacity: 0;
+  animation: fadein 1s ease forwards;
+  @keyframes fadein {
+      100% {  opacity: 1;}
+  }
 }
 
 .kininaru_article_text{
@@ -17,6 +22,10 @@
 .kininaru_image{
   width: 18rem;
   height: 10rem;
+}
+
+.toppage_kininaru_user{
+  display: flex;
 }
 
 //モーダル
@@ -41,7 +50,21 @@
   justify-content: center;
 }
 
+
+
+
+
 //お気に入りハート
 .heart-red{
   color: red;
+}
+
+//お気に入りニュース横のユーザー
+.index_user_image{
+  width: 5rem;
+  height: 5rem;
+  object-fit: cover;
+  border-radius:50%;
+  padding-right: 0px;
+  padding-left: 0px;
 }

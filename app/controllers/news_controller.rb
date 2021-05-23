@@ -3,11 +3,12 @@ class NewsController < ApplicationController
   before_action :set_new, only: [:destroy]
 
   def index
-    @news = New.all
+    @news = New.all.order(id: "DESC")
+    @news_length = @news.length
   end
 
   def create
-    New.create(news_params)
+    @new = New.create(news_params)
     redirect_to news_index_path
   end
 

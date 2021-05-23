@@ -4,10 +4,10 @@
     <title>Kininaru</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
   </head>
 
   <body>
@@ -45,7 +45,7 @@
               <% end %>
             <%= link_to news["title"], news["link"], class:"article"%>
             <% if logged_in? %>
-              <%= button_to '気になる', {controller: '/news', action: 'create'},
+              <%= button_to '気になる', {controller: '/news', action: 'create', remote: true},
                                        {params: {
                                                 new: {
                                                       title: news["title"],
@@ -63,18 +63,9 @@
         <% flash.each do |key, value| %>
           <%= content_tag(:div, value, class: "#{key}") %>
         <% end %>
-        <% if logged_in? %>
-          <%= link_to "Profile", user_path(current_user.id) %>
-          <%= link_to "Logout", session_path(current_user.id), method: :delete %>
-        <% else %>
-          <%= link_to "Sign up", new_user_path %>
-          <%= link_to "Login", new_session_path %>
-        <% end %>
 
         <%= yield %>
 
-        <div class="col-lg-1">
-        </div>
       </div>
     </div>
 
