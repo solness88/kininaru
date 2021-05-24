@@ -45,7 +45,7 @@
               <% end %>
             <%= link_to news["title"], news["link"], class:"article"%>
             <% if logged_in? %>
-              <%= button_to '気になる', {controller: '/news', action: 'create', remote: true},
+              <%= button_to '気になる', {controller: '/news', action: 'create'},
                                        {params: {
                                                 new: {
                                                       title: news["title"],

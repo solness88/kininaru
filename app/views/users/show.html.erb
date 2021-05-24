@@ -15,7 +15,12 @@
         <div class="card-body">
 
 
-            <% @user_news.each do |user_news| %>
+          <% @user_news.each do |user_news| %>
+            <% if user_news.recommend %>
+              <%= link_to 'おすすめから外す', news_path(user_news.id, post: {recommend: false}), method: :put %>
+            <% else %>
+              <%= link_to 'おすすめ', news_path(user_news.id, post: {recommend: true}), method: :put %>
+            <% end %>
             <div class="toppage_kininaru_article">
               <div>
                 <div><%= link_to user_news.title, user_news.link, class:"kininaru_article_text" %></div>
@@ -26,6 +31,8 @@
               <div>
                 <div><%= image_tag user_news.image, class:"kininaru_image" %></div>
               </div>
+            </div>
+
 
               <div class="modal fade" id="Modal<%= user_news.id %>" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -82,7 +89,12 @@
                   </div>
                 </div>
               </div>
-            </div>
+
+
+
+
+
+
             <% end %>
           </div>
         </div>

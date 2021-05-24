@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_18_115923) do
+ActiveRecord::Schema.define(version: 2021_05_23_073454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2021_05_18_115923) do
     t.text "link"
     t.text "image"
     t.bigint "user_id"
+    t.boolean "recommend", default: false, null: false
     t.index ["user_id"], name: "index_news_on_user_id"
   end
 
