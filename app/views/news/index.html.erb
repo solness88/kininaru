@@ -1,4 +1,4 @@
-<div class="toppage_kininaru col-lg-3">
+<div class="toppage_kininaru col-md-3">
     <% @news.each do |new| %>
     <div class="toppage_kininaru_user">
       <div>
@@ -32,16 +32,15 @@
               </button>
             </div>
             <div class="modal-body">
-              <p>
+              <div>
                 <%= image_tag new.user.image.url, class:"comment_user_image" %>
                 <%= new.user.name %>さんのコメント
                 <input type="button" class="comment_form_btn" value="コメント欄">
-              </p>
+              </div>
 
               <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
-              <div id="comments_area<%= new.id %>">
-                <%= render partial: 'comments/index', locals: { comments: new.comments, new: new } %>
-              </div>
+            <div class="modal_comments">
+
 
               <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
               <div style="display: none" class="comments_form<%= new.id %>">
@@ -56,31 +55,38 @@
                   $('.comments_form<%= new.id %>').fadeToggle('slow');
                 });
               </script>
+            </div>
+
+            <div id="comments_area<%= new.id %>">
+              <%= render partial: 'comments/index', locals: { comments: new.comments, new: new } %>
+            </div>
+
+
+
               <div class="testtesttest">
-              <% unless new.user_id == current_user.id %>
-                <% if @favorite.present? %>
-                  <%= link_to favorite_path(id: @favorite.id), method: :delete do %>
-                    <% if current_user.favorited_by?(new.id) %>
-                      <i class="fas fa-heart heart-red"></i>
-                      <%= new.favorites.count %>
-                    <% else %>
-                      <i class="far fa-heart"></i>
-                      <%= new.favorites.count %>
-                    <% end %>
+              <% if @favorite.present? %>
+                <%= link_to favorite_path(id: @favorite.id), method: :delete do %>
+                  <% if current_user.favorited_by?(new.id) %>
+                    <i class="fas fa-heart heart-red"></i>
+                    <%= new.favorites.count %>
+                  <% else %>
+                    <i class="far fa-heart"></i>
+                    <%= new.favorites.count %>
                   <% end %>
-                <% else %>
-                  <%= link_to favorites_path(new_id: new.id), method: :post do %>
-                    <% if current_user.favorited_by?(new.id) %>
-                      <i class="fas fa-heart heart-red"></i>
-                      <%= new.favorites.count %>
-                    <% else %>
-                      <i class="far fa-heart"></i>
-                      <%= new.favorites.count %>
-                    <% end %>
+                <% end %>
+              <% else %>
+                <%= link_to favorites_path(new_id: new.id), method: :post do %>
+                  <% if current_user.favorited_by?(new.id) %>
+                    <i class="fas fa-heart heart-red"></i>
+                    <%= new.favorites.count %>
+                  <% else %>
+                    <i class="far fa-heart"></i>
+                    <%= new.favorites.count %>
                   <% end %>
                 <% end %>
               <% end %>
               </div>
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
@@ -90,10 +96,9 @@
         </div>
       </div>
     </div>
-        <div>
-          <div><%=image_tag new.user.image.url, class:"index_user_image" %></div>
-          <div><%= new.user.name %></div>
-        </div>
-    </div>
+  </div>
+
     <% end %>
-</div>
+  </div>
+  <div class="col-md-1">
+  </div>

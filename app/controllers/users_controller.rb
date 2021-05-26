@@ -34,6 +34,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user_news = New.where(user_id: @user.id)
     @favorite_news = @user.favorite_news
+    @recommend_news =  New.where(user_id: @user.id, recommend: true)
   end
 
   private

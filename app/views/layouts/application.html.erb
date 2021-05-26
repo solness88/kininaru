@@ -33,9 +33,9 @@
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-1">
+        <div class="col-sm-8 col-md-1">
         </div>
-        <div class="toppage_articles col-lg-7">
+        <div class="toppage_articles col-sm-4 col-md-7">
           <% @hash["articles"].each do |news| %>
           <div class="toppage_article">
               <% if news["media"].nil? %>
@@ -65,7 +65,6 @@
         <% end %>
 
         <%= yield %>
-
       </div>
     </div>
 

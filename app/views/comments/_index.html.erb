@@ -1,11 +1,13 @@
-
   <% comments.each do |comment| %>
+  <div class="comment_index">
     <% if comment.id.present? %>
         <div class="comment-content" id ="this_comment_<%= comment.id %>">
+          <div><%= new.user.name %></div>
           <div><%= comment.content %></div>
-          <div><%= link_to "編集", edit_news_comment_path(new, comment), remote: true %></div>
-          <div><%= link_to "削除", news_comment_path(comment.new_id, comment.id), method: :delete, remote: true,
+          <div><%#= link_to "編集", edit_news_comment_path(new, comment), remote: true %></div>
+          <div><%#= link_to "削除", news_comment_path(comment.new_id, comment.id), method: :delete, remote: true,
                                   data: { confirm: "本当に削除しますか?"} %></div>
-        </div>                          
+        </div>
     <% end %>
+  </div>
   <% end %>

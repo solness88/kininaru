@@ -101,7 +101,8 @@
  }
 
  .toppage_article{
-   width: 18rem;
+   width:15%;
+ 	 height:auto;
    display: flex;
    flex-direction: column;
    margin: 1.5rem;

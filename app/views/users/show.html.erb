@@ -1,6 +1,24 @@
 <div class="toppage_kininaru col-lg-3">
 <h1><%= @user.name %>のページ</h1>
 
+  <!-- ユーザー詳細ページにおすすめニュースを表示 -->
+  <% @recommend_news.each do |recommend_news| %>
+    <div class="toppage_kininaru_article">
+      <div>
+        <div><%= link_to recommend_news.title, recommend_news.link, class:"kininaru_article_text" %></div>
+        <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#Modal<%= recommend_news.id %>">
+          コメント
+        </button>
+          <%= link_to news_path(recommend_news.id, post: {recommend: false}), method: :put do %>
+            <i class="fas fa-star" style="color: orange;"></i>
+          <% end %>
+      </div>
+      <div>
+        <div><%= image_tag recommend_news.image, class:"kininaru_image" %></div>
+      </div>
+    </div>
+  <% end %>
+
   <div class="accordion" id="accordion-4">
     <div class="card">
       <div class="card-header" id="header-4a">
@@ -13,26 +31,23 @@
       <div id="card-4a" class="collapse"
         aria-labelledby="header-4a" data-parent="#accordion-4">
         <div class="card-body">
-
-
           <% @user_news.each do |user_news| %>
-            <% if user_news.recommend %>
-              <%= link_to 'おすすめから外す', news_path(user_news.id, post: {recommend: false}), method: :put %>
-            <% else %>
-              <%= link_to 'おすすめ', news_path(user_news.id, post: {recommend: true}), method: :put %>
-            <% end %>
+            <% if user_news.recommend == false %>
             <div class="toppage_kininaru_article">
               <div>
                 <div><%= link_to user_news.title, user_news.link, class:"kininaru_article_text" %></div>
                 <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#Modal<%= user_news.id %>">
                   コメント
                 </button>
+                <%= link_to news_path(user_news.id, post: {recommend: true}), method: :put do %>
+                  <i class="far fa-star"></i>
+                <% end %>
               </div>
               <div>
                 <div><%= image_tag user_news.image, class:"kininaru_image" %></div>
               </div>
             </div>
-
+            <% end %>
 
               <div class="modal fade" id="Modal<%= user_news.id %>" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -89,16 +104,19 @@
                   </div>
                 </div>
               </div>
-
-
-
-
-
-
             <% end %>
+
+          </div>
+
           </div>
         </div>
-      </div>
+
+
+
+
+
+
+
 
 
 
@@ -114,10 +132,6 @@
             aria-labelledby="header-4b" data-parent="#accordion-4">
           <div class="card-body">
 
-
-
-
-
             <% @favorite_news.each do |user_news| %>
             <div class="toppage_kininaru_article">
               <div>
@@ -125,6 +139,8 @@
                 <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#Modal<%= user_news.id %>">
                   コメント
                 </button>
+
+
               </div>
               <div>
                 <div><%= image_tag user_news.image, class:"kininaru_image" %></div>
@@ -187,26 +203,6 @@
               </div>
             </div>
             <% end %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
           </div>
         </div>
       </div>
