@@ -1,18 +1,24 @@
-<div class="toppage_kininaru col-md-3">
+<div class="toppage_kininaru col-sm-12 col-md-3">
     <% @news.each do |new| %>
     <div class="toppage_kininaru_user">
       <div>
       <div class="toppage_kininaru_article">
         <div>
           <div><%= link_to new.title, new.link, class:"kininaru_article_text" %></div>
-          <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#Modal<%= new.id %>">
-            コメント
-          </button>
-          <% if new.user_id == current_user.id %>
-            <%= button_to '削除', news_path(new.id), method: :delete %>
-          <% end %>
-          <div class = "heart_<%= new.id %>">
-            <%= render partial: 'favorites/heart', locals: { new: new } %>
+          <div class="logos_horizontal">
+            <div data-toggle="modal" data-target="#Modal<%= new.id %>">
+              <i class="far fa-comment"></i>
+            </div>
+
+            <% if new.user_id == current_user.id %>
+              <%= link_to news_path(new.id), method: :delete do %>
+                <div><i class="far fa-trash-alt"></i></div>
+              <% end %>
+            <% end %>
+
+            <div class = "heart_<%= new.id %>">
+              <%= render partial: 'favorites/heart', locals: { new: new } %>
+            </div>
           </div>
         </div>
         <div>
@@ -35,12 +41,12 @@
               <div>
                 <%= image_tag new.user.image.url, class:"comment_user_image" %>
                 <%= new.user.name %>さんのコメント
-                <input type="button" class="comment_form_btn" value="コメント欄">
+                <% if new.user == current_user %><input type="button" class="comment_form_btn" value="コメント欄"><% end %>
               </div>
 
               <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
+            <% if new.user == current_user %>
             <div class="modal_comments">
-
 
               <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
               <div style="display: none" class="comments_form<%= new.id %>">
@@ -60,8 +66,7 @@
             <div id="comments_area<%= new.id %>">
               <%= render partial: 'comments/index', locals: { comments: new.comments, new: new } %>
             </div>
-
-
+            <% end %>
 
               <div class="testtesttest">
               <% if @favorite.present? %>

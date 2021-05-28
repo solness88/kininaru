@@ -1,4 +1,5 @@
-<h2>ユーザーの新規追加</h2>
+<div class="toppage_kininaru col-sm-12 col-md-3">
+<div class="newuser_title"><h2>ユーザーの新規追加</h2></div>
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
@@ -12,27 +13,33 @@
 
 <%= form_with(model: @user, local: true) do |f| %>
   <div class="user_signup">
-    <div class="form-group row">
-      <div><%= f.label :名前, class:"text_field col-sm-3" %></div>
-      <div><%= f.text_field :name, placeholder: "Name", class:"text_field col-sm-6" %></div>
+    <div class="form-group">
+      <div><%= f.label :名前, class:"text_field" %></div>
+      <div><%= f.text_field :name, placeholder: "Name", class:"text_field text_box" %></div>
     </div>
-    <div class="form-group row">
-      <div><%= f.label :メール, class:"text_field col-sm-3" %></div>
-      <div><%= f.email_field :email, placeholder: "Email", class:"text_field col-sm-6" %></div>
+    <div class="form-group">
+      <div><%= f.label :メール, class:"text_field" %></div>
+      <div><%= f.email_field :email, placeholder: "Email", class:"text_field text_box" %></div>
     </div>
-    <div class="form-group row">
-      <div><%= f.label :パスワード, class:"text_field col-sm-3" %></div>
-      <div><%= f.password_field :password, placeholder: "Password", class:"text_field col-sm-6" %></div>
+    <div class="form-group">
+      <div><%= f.label :パスワード, class:"text_field" %></div>
+      <div><%= f.password_field :password, placeholder: "Password", class:"text_field text_box" %></div>
     </div>
-    <div class="form-group row">
-      <div><%= f.label :パスワード（確認）, class:"text_field col-sm-3" %></div>
-      <div><%= f.password_field :password_confirmation, placeholder: "Password", class:"text_field col-sm-6" %></div>
+    <div class="form-group">
+      <div><%= f.label :パスワード（確認）, class:"text_field" %></div>
+      <div><%= f.password_field :password_confirmation, placeholder: "Password", class:"text_field text_box" %></div>
     </div>
-    <div class="form-group row">
-      <div><%= f.label :写真, class:"text_field col-sm-3" %></div>
-      <div><%= f.file_field :image, class:"text_field col-sm-6" %></div>
+    <div class="form-group">
+      <div><%= f.label :写真, class:"text_field" %></div>
+      <div><%= f.file_field :image, class:"text_field text_box" %></div>
     </div>
-    <div><%= f.check_box(:admin, {:checked => false}, checked_value = "true", unchecked_value = "false") %></div>
-    <div><%= f.submit "ユーザーを追加する" %></div>
+    <div class="newuser_admin">
+      <div><%= f.label :管理者権限, class:"text_field" %></div>
+      <div class="admin_checkbox"><%= f.check_box(:admin, {:checked => false}, checked_value = "true", unchecked_value = "false") %></div>
+    </div>
+    <div class="form-group">
+      <div><%= f.submit "ユーザーを追加する" %></div>
+    </div>
   </div>
 <% end %>
+</div>

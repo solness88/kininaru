@@ -17,6 +17,10 @@
 
 .kininaru_article_text{
   padding:1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .kininaru_image{
@@ -26,6 +30,13 @@
 
 .toppage_kininaru_user{
   display: flex;
+}
+
+.logos_horizontal{
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+  align-items: flex-end;
 }
 
 //モーダル

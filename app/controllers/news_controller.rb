@@ -9,7 +9,6 @@ class NewsController < ApplicationController
 
   def create
     @new = New.create(news_params)
-    sleep 0.5
     redirect_to news_index_path
   end
 
@@ -21,13 +20,14 @@ class NewsController < ApplicationController
       @new.attributes = {recommend:false}
     end
     @new.save
-    redirect_to user_path(@new.user_id), notice: "おすすめニュースを更新しました！"
+    sleep 0.6
+    redirect_to user_path(@new.user_id)
   end
 
   def destroy
     @new.destroy
-    sleep 0.5
-    redirect_to news_index_path, notice:"気になるニュースを削除しました"
+    sleep 0.6
+    redirect_to news_index_path
   end
 
   private

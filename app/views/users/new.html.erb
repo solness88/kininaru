@@ -1,4 +1,4 @@
-<h2>ユーザーの新規追加</h2>
+<div class="toppage_kininaru col-sm-12 col-md-3">
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
@@ -35,3 +35,4 @@
     <div><%= f.submit "ユーザーを追加する" %></div>
   </div>
 <% end %>
+</div>

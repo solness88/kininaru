@@ -1,5 +1,5 @@
 <div class="toppage_kininaru col-lg-3">
-<h1><%= @user.name %>のページ</h1>
+<h1><%= @user.name %>さんのおすすめ</h1>
 
   <!-- ユーザー詳細ページにおすすめニュースを表示 -->
   <% @recommend_news.each do |recommend_news| %>
@@ -19,12 +19,11 @@
     </div>
   <% end %>
 
+  <!-- 「気になる」したニュースを表示 -->
   <div class="accordion" id="accordion-4">
     <div class="card">
       <div class="card-header" id="header-4a">
-        <button class="btn btn-link" type="button"
-            data-toggle="collapse" data-target="#card-4a"
-            aria-expanded="true" aria-controls="card-4a">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#card-4a" aria-expanded="true" aria-controls="card-4a">
             気になるニュース
         </button>
       </div>
@@ -49,6 +48,8 @@
             </div>
             <% end %>
 
+
+            <!-- 「気になる」したニュースのモーダル -->
               <div class="modal fade" id="Modal<%= user_news.id %>" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
@@ -99,27 +100,16 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                      <button type="button" class="btn btn-primary">保存</button>
                     </div>
                   </div>
                 </div>
               </div>
-            <% end %>
-
-          </div>
-
+              <% end %>
+            </div>
           </div>
         </div>
 
-
-
-
-
-
-
-
-
-
+      <!-- お気に入りしたニュースを表示 -->
       <div class="card">
         <div class="card-header" id="header-4b">
           <button class="btn btn-link" type="button"
@@ -139,12 +129,11 @@
                 <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#Modal<%= user_news.id %>">
                   コメント
                 </button>
-
-
               </div>
               <div>
                 <div><%= image_tag user_news.image, class:"kininaru_image" %></div>
               </div>
+            </div>
 
               <div class="modal fade" id="Modal<%= user_news.id %>" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -196,12 +185,10 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                      <button type="button" class="btn btn-primary">保存</button>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
             <% end %>
           </div>
         </div>

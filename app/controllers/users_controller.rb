@@ -31,6 +31,7 @@ class UsersController < ApplicationController
     end
   end
   def show
+    sleep 0.6
     @user = User.find(params[:id])
     @user_news = New.where(user_id: @user.id)
     @favorite_news = @user.favorite_news

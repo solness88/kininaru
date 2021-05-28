@@ -94,6 +94,11 @@
    margin-left: auto;
  }
 
+
+.container-fluid{
+  overflow: hidden;
+}
+
  .toppage_articles{
    display: flex;
    flex-wrap: wrap;

@@ -4,13 +4,20 @@
     <title>Kininaru</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta charset="utf-8">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-    <meta name="viewport" content="width=device-width">
+    <!--<meta name="viewport" content="width=device-width">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
+
   <body>
+    <!--
+
     <header>
       <ul class="header_items">
         <li class="header_item"><%= link_to "気になるニュース", news_index_path %></li>
@@ -30,6 +37,36 @@
         <% end %>
       </ul>
     </header>
+-->
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <li class="header_item"><%= link_to "気になるニュース", news_index_path, class:"header_item navbar-brand" %></li>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <% if logged_in? %>
+        <li class="header_item header_hello nav-link nav-item">こんにちは、<%= current_user.name %>さん。</li>
+      <% end %>
+
+      <% if current_user && current_user.admin? %>
+        <li class="header_item_user nav-link"><%= link_to "メンバーの一覧", admin_users_path %></li>
+      <% else %>
+        <li class="header_item_user nav-link"><%= link_to "メンバーの一覧", users_path %></li>
+      <% end %>
+
+        <li class="header_item"><%= link_to "メンバーを追加", new_admin_user_path %></li>
+
+      <% if logged_in? %>
+        <li class="header_item"><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
+      <% else %>
+        <li class="header_item"><%= link_to "ログイン", new_session_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
 
     <div class="container-fluid">
       <div class="row">
