@@ -9,6 +9,7 @@ class NewsController < ApplicationController
 
   def create
     @new = New.create(news_params)
+    sleep 0.5
     redirect_to news_index_path
   end
 
@@ -25,6 +26,7 @@ class NewsController < ApplicationController
 
   def destroy
     @new.destroy
+    sleep 0.5
     redirect_to news_index_path, notice:"気になるニュースを削除しました"
   end
 
