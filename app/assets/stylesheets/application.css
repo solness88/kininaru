@@ -90,10 +90,13 @@
    justify-content: space-between;
 }
 
+ .header_item{
+   color: white;
+}
+
  .header_item_user{
    margin-left: auto;
  }
-
 
 .container-fluid{
   overflow: hidden;

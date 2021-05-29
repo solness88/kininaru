@@ -41,17 +41,27 @@
               <div>
                 <%= image_tag new.user.image.url, class:"comment_user_image" %>
                 <%= new.user.name %>さんのコメント
-                <% if new.user == current_user %><input type="button" class="comment_form_btn" value="コメント欄"><% end %>
+                <% if new.user == current_user %>
+                  <button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                      コメント欄
+                  </button>
+                <% end %>
               </div>
 
-              <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
-            <% if new.user == current_user %>
+            <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
+              <div id="comments_area<%= new.id %>">
+                <%= render partial: 'comments/index', locals: { comments: new.comments, new: new } %>
+              </div>
+
             <div class="modal_comments">
-              <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
+            <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
               <div style="display: none" class="comments_form<%= new.id %>">
                 <%= render partial: 'comments/form', locals: { comment: new.comments.build, new: new } %>
               </div>
 
+              <div class="collapse" id="collapseExample">
+                <%= render partial: 'comments/form', locals: { comment: new.comments.build, new: new } %>
+              </div>
               <!-- コメント入力欄の表示・非表示を切り替え -->
               <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
               </script>
@@ -62,10 +72,7 @@
               </script>
             </div>
 
-            <div id="comments_area<%= new.id %>">
-              <%= render partial: 'comments/index', locals: { comments: new.comments, new: new } %>
-            </div>
-            <% end %>
+
 
               <div class="testtesttest">
               <% if @favorite.present? %>

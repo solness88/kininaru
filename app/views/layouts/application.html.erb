@@ -5,10 +5,10 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <!--<meta name="viewport" content="width=device-width">-->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -16,28 +16,6 @@
 
 
   <body>
-    <!--
-
-    <header>
-      <ul class="header_items">
-        <li class="header_item"><%= link_to "気になるニュース", news_index_path %></li>
-        <% if logged_in? %>
-          <li class="header_item header_hello">こんにちは、<%= current_user.name %>さん。</li>
-        <% end %>
-        <% if current_user && current_user.admin? %>
-          <li class="header_item_user"><%= link_to "メンバーの一覧", admin_users_path %></li>
-        <% else %>
-          <li class="header_item_user"><%= link_to "メンバーの一覧", users_path %></li>
-        <% end %>
-        <li class="header_item"><%= link_to "メンバーを追加", new_admin_user_path %></li>
-        <% if logged_in? %>
-          <li class="header_item"><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
-        <% else %>
-          <li class="header_item"><%= link_to "ログイン", new_session_path %></li>
-        <% end %>
-      </ul>
-    </header>
--->
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
   <li class="header_item"><%= link_to "気になるニュース", news_index_path, class:"header_item navbar-brand" %></li>
@@ -48,21 +26,26 @@
   <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
     <ul class="navbar-nav">
       <% if logged_in? %>
-        <li class="header_item header_hello nav-link nav-item">こんにちは、<%= current_user.name %>さん。</li>
+        <li class="header_item header_hello">こんにちは、<%= current_user.name %>さん。</li>
+        <li class="header_item header_hello"><%= link_to "マイページ", user_path(current_user.id), class:"header_item" %></li>
       <% end %>
 
+      <li class="navbar-nav header_item_user header_item header_hello">
       <% if current_user && current_user.admin? %>
-        <li class="header_item_user nav-link"><%= link_to "メンバーの一覧", admin_users_path %></li>
+        <%= link_to "メンバーの一覧", admin_users_path, class:"header_item" %>
       <% else %>
-        <li class="header_item_user nav-link"><%= link_to "メンバーの一覧", users_path %></li>
+        <%= link_to "メンバーの一覧", users_path, class:"header_item" %>
       <% end %>
+      </li>
 
-        <li class="header_item"><%= link_to "メンバーを追加", new_admin_user_path %></li>
+      <li class="navbar-nav header_item header_item header_hello"><%= link_to "メンバーを追加", new_admin_user_path, class:"header_item" %></li>
 
+      <li class="navbar-nav header_item header_item header_hello">
       <% if logged_in? %>
-        <li class="header_item"><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
+        <%= link_to "ログアウト", session_path(current_user.id), method: :delete, class:"header_item" %>
       <% else %>
-        <li class="header_item"><%= link_to "ログイン", new_session_path %></li>
+        <%= link_to "ログイン", new_session_path, class:"header_item" %>
+      </li>
       <% end %>
     </ul>
   </div>
@@ -110,5 +93,8 @@
       <p>気になるニュース</p>
       <p>© 2021 Kininaru News</p>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
