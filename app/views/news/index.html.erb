@@ -47,7 +47,6 @@
               <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
             <% if new.user == current_user %>
             <div class="modal_comments">
-
               <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
               <div style="display: none" class="comments_form<%= new.id %>">
                 <%= render partial: 'comments/form', locals: { comment: new.comments.build, new: new } %>

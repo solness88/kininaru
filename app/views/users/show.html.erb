@@ -6,18 +6,30 @@
     <div class="toppage_kininaru_article">
       <div>
         <div><%= link_to recommend_news.title, recommend_news.link, class:"kininaru_article_text" %></div>
-        <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#Modal<%= recommend_news.id %>">
-          コメント
-        </button>
-          <%= link_to news_path(recommend_news.id, post: {recommend: false}), method: :put do %>
-            <i class="fas fa-star" style="color: orange;"></i>
-          <% end %>
+          <div class="logos_horizontal">
+            <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#Modal<%= recommend_news.id %>">
+              コメント
+            </button>
+            <div data-toggle="modal" data-target="#Modal<%= recommend_news.id %>">
+              <i class="far fa-comment"></i>
+            </div>
+            <%= link_to news_path(recommend_news.id, post: {recommend: false}), method: :put do %>
+              <div><i class="fas fa-star" style="color: orange;"></i></div>
+            <% end %>
+            <div class = "heart_<%= recommend_news.id %>">
+              <%= render partial: 'favorites/heart', locals: { new: recommend_news } %>
+            </div>
+            <%= link_to news_path(recommend_news.id), method: :delete do %>
+              <div><i class="far fa-trash-alt"></i></div>
+            <% end %>
+          </div>
       </div>
       <div>
         <div><%= image_tag recommend_news.image, class:"kininaru_image" %></div>
       </div>
     </div>
   <% end %>
+
 
   <!-- 「気になる」したニュースを表示 -->
   <div class="accordion" id="accordion-4">
@@ -34,12 +46,24 @@
             <div class="toppage_kininaru_article">
               <div>
                 <div><%= link_to user_news.title, user_news.link, class:"kininaru_article_text" %></div>
+                <div class="logos_horizontal">
+
                 <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#Modal<%= user_news.id %>">
                   コメント
                 </button>
+                <div data-toggle="modal" data-target="#Modal<%= user_news.id %>">
+                  <i class="far fa-comment"></i>
+                </div>
                 <%= link_to news_path(user_news.id, post: {recommend: true}), method: :put do %>
                   <i class="far fa-star"></i>
                 <% end %>
+                <div class = "heart_<%= user_news.id %>">
+                  <%= render partial: 'favorites/heart', locals: { new: user_news } %>
+                </div>
+                <%= link_to news_path(user_news.id), method: :delete do %>
+                  <div><i class="far fa-trash-alt"></i></div>
+                <% end %>
+                </div>
               </div>
               <div>
                 <div><%= image_tag user_news.image, class:"kininaru_image" %></div>
@@ -121,9 +145,17 @@
             <div class="toppage_kininaru_article">
               <div>
                 <div><%= link_to favorite_news.title, favorite_news.link, class:"kininaru_article_text" %></div>
-                <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#Modal<%= favorite_news.id %>">
-                  コメント
-                </button>
+                <div class="logos_horizontal">
+                  <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#Modal<%= favorite_news.id %>">
+                    コメント
+                  </button>
+                  <div data-toggle="modal" data-target="#Modal<%= favorite_news.id %>">
+                    <i class="far fa-comment"></i>
+                  </div>
+                  <div class = "heart_<%= favorite_news.id %>">
+                    <%= render partial: 'favorites/heart', locals: { new: favorite_news } %>
+                  </div>
+                </div>
               </div>
               <div>
                 <div><%= image_tag favorite_news.image, class:"kininaru_image" %></div>
@@ -147,29 +179,35 @@
                       <p>
                         <%= image_tag favorite_news.user.image.url, class:"comment_user_image" %>
                         <%= favorite_news.user.name %>さんのコメント
-                        <input type="button" class="comment_form_btn" value="コメント欄">
+                        <% if params[:id] == current_user.id %><input type="button" class="comment_form_btn" value="コメント欄"><% end %>
                       </p>
+
                       <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
                       <div id="comments_area<%= favorite_news.id %>">
                         <%= render partial: 'comments/index', locals: { comments: favorite_news.comments, new: favorite_news } %>
                       </div>
-                      <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
-                      <div style="display: none" class="comments_form<%= favorite_news.id %>">
-                        <%= render partial: 'comments/form', locals: { comment: favorite_news.comments.build, new: favorite_news } %>
-                      </div>
 
-                      <!-- コメント入力欄の表示・非表示を切り替え -->
-                      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
-                      </script>
-                      <script>
-                        $('.comment_form_btn').click(function(){
-                          $('.comments_form<%= favorite_news.id %>').fadeToggle('slow');
-                        });
-                      </script>
+                      <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
+                      <% if params[:id] == current_user.id %>
+                      <div class="modal_comments">
+
+                        <div style="display: none" class="comments_form<%= favorite_news.id %>">
+                          <%= render partial: 'comments/form', locals: { comment: favorite_news.comments.build, new: favorite_news } %>
+                        </div>
+
+                        <!-- コメント入力欄の表示・非表示を切り替え -->
+                        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+                        </script>
+                        <script>
+                          $('.comment_form_btn').click(function(){
+                            $('.comments_form<%= favorite_news.id %>').fadeToggle('slow');
+                          });
+                        </script>
+                      <% end %>
 
                       <div class="testtesttest">
                       <% @favorite = current_user.favorites.find_by(new_id: favorite_news.id) %>
-                      <% unless favorite_news.user_id == current_user.id %>
+                      <% unless params[:id] == current_user.id %>
                         <% if @favorite.present? %>
                           <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
                         <% else %>
@@ -177,12 +215,12 @@
                         <% end %>
                       <% end %>
                       </div>
+                    </div>
 
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
                     </div>
-                  </div>
                 </div>
               </div>
               <% end %>
