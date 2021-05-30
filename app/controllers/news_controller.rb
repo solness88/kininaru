@@ -2,6 +2,9 @@ class NewsController < ApplicationController
   before_action :newsapi
   before_action :set_new, only: [:destroy, :update]
 
+  def home
+  end
+
   def index
     @news = New.all.order(id: "DESC")
     @news_length = @news.length

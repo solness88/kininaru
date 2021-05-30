@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  before_action :login_required
+  before_action :login_required, except:[:home]
   protect_from_forgery with: :exception
   include SessionsHelper
   require 'uri'
