@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       sleep 0.6
       redirect_to users_path
     else
-      flash.now[:danger] = 'ログインに失敗しました'
+      flash.now[:danger] = 'ログインに失敗しました。メールアドレスとパスワードをご確認ください。'
       sleep 0.6
       render :new
     end

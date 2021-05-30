@@ -32,6 +32,14 @@
   margin-left: 1rem;
 }
 
+#error_explanation{
+  text-align: left;
+}
+
+#error_explanation ul{
+  text-align: left;
+}
+
 //ユーザー一覧
 .user_index{
   display: flex;

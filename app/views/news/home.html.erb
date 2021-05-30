@@ -1,5 +1,17 @@
 <div class="toppage_kininaru col-sm-12 col-md-3">
-<h3>気になるニュース トップページ</h3>
-<%= link_to 'ゲストログイン(管理者)', sessions_adminguest_path, method: :post, class: 'btn btn-success' %>
-<%= link_to 'ゲストログイン(一般ユーザー)', sessions_guest_path, method: :post, class: 'btn btn-danger' %>
+  <h3>気になるニュース トップページ</h3>
+
+
+  <div class="rootpage_p">
+  　<p>報道機関で海外ニュースを扱う部署向けのアプリケーションです。</p>
+  　<p>ログインしたら、まずは左側のニュース項目の中から興味あるニュースの「気になる」をクリック。コメントをつけてみんなに共有してください。</p>
+    <p>マイページ内では、コメント付きでイチオシニュースを掲載できます。</p>
+  </div>
+
+
+  <h2>ゲストログイン</h2>
+  <%= link_to '管理者', sessions_adminguest_path, method: :post, class:"btn btn--orange btn--cubic btn--shadow" %>
+  <%= link_to '一般ユーザー', sessions_guest_path, method: :post, class:"btn btn--orange btn--cubic btn--shadow" %>
+
+
 </div>
