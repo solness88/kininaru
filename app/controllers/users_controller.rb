@@ -38,6 +38,12 @@ class UsersController < ApplicationController
     @recommend_news =  New.where(user_id: @user.id, recommend: true)
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to admin_users_path, notice:"ユーザーを削除しました"
+  end
+
   private
 
   def user_params

@@ -38,7 +38,9 @@
             </div>
             <div class="modal-body">
               <div>
-                <%= image_tag new.user.image.url, class:"comment_user_image" %>
+                <% if new.user.image.url.present? %>
+                  <%= image_tag new.user.image.url, class:"comment_user_image" %>
+                <% end %>
                 <%= new.user.name %>さんのコメント
                 <% if new.user == current_user %>
                   <button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">

@@ -43,7 +43,7 @@
           </div>
           <div class="modal-body">
             <p>
-              <%= image_tag recommend_news.user.image.url, class:"comment_user_image" %>
+              <% if recommend_news.user.image.url.present? %><%= image_tag recommend_news.user.image.url, class:"comment_user_image" %><% end %>
               <%= recommend_news.user.name %>さんのコメント
               <input type="button" class="comment_form_btn" value="コメント欄">
             </p>
@@ -150,7 +150,7 @@
                     </div>
                     <div class="modal-body">
                       <p>
-                        <%= image_tag user_news.user.image.url, class:"comment_user_image" %>
+                        <% if user_news.user.image.url.present? %><%= image_tag user_news.user.image.url, class:"comment_user_image" %><% end %>
                         <%= user_news.user.name %>さんのコメント
                         <input type="button" class="comment_form_btn" value="コメント欄">
                       </p>
@@ -241,7 +241,7 @@
                     </div>
                     <div class="modal-body">
                       <p>
-                        <%= image_tag favorite_news.user.image.url, class:"comment_user_image" %>
+                        <% if favorite_news.user.image.url.present? %><%= image_tag favorite_news.user.image.url, class:"comment_user_image" %><% end %>
                         <%= favorite_news.user.name %>さんのコメント
                         <% if params[:id] == current_user.id %><input type="button" class="comment_form_btn" value="コメント欄"><% end %>
                       </p>
