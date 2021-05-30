@@ -1,8 +1,8 @@
-<div class="toppage_kininaru col-sm-12 col-md-3">
   <%= form_with(model: @user, local: true) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
+      <h3><%= pluralize(@user.errors.count, "件のエラー") %> が発生したため</h3>
+      <h3>ユーザー登録ができませんでした。</h3>
       <ul>
       <% @user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -12,27 +12,28 @@
   <% end %>
 
   <div class="user_signup">
-    <div class="form-group row">
-      <div><%= f.label :名前, class:"text_field col-sm-3" %></div>
-      <div><%= f.text_field :name, placeholder: "Name", class:"text_field col-sm-6" %></div>
+    <div class="form-group">
+      <div><%= f.label :名前, class:"text_field" %></div>
+      <div><%= f.text_field :name, placeholder: "Name", class:"text_field text_box" %></div>
     </div>
-    <div class="form-group row">
+    <div class="form-group">
       <div><%= f.label :メール, class:"text_field col-sm-3" %></div>
-      <div><%= f.email_field :email, placeholder: "Email", class:"text_field col-sm-6" %></div>
+      <div><%= f.email_field :email, placeholder: "Email", class:"text_field text_box" %></div>
     </div>
-    <div class="form-group row">
+    <div class="form-group">
       <div><%= f.label :パスワード, class:"text_field col-sm-3" %></div>
-      <div><%= f.password_field :password, placeholder: "Password", class:"text_field col-sm-6" %></div>
+      <div><%= f.password_field :password, placeholder: "Password", class:"text_field text_box" %></div>
     </div>
-    <div class="form-group row">
+    <div class="form-group">
       <div><%= f.label :パスワード（確認）, class:"text_field col-sm-3" %></div>
-      <div><%= f.password_field :password_confirmation, placeholder: "Password", class:"text_field col-sm-6" %></div>
+      <div><%= f.password_field :password_confirmation, placeholder: "Password", class:"text_field text_box" %></div>
     </div>
-    <div class="form-group row">
-      <div><%= f.label :写真, class:"text_field col-sm-3" %></div>
-      <div><%= f.file_field :image, class:"text_field col-sm-6" %></div>
+    <div class="form-group">
+      <div><%= f.label :写真, class:"text_field" %></div>
+      <div><%= f.file_field :image, class:"text_field text_box" %></div>
     </div>
-    <div><%= f.submit "ユーザーを追加する" %></div>
+    <div class="form-group">
+      <div><%= f.submit "ユーザーを追加する" %></div>
+    </div>
   </div>
 <% end %>
-</div>

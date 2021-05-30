@@ -80,11 +80,16 @@
           <% end %>
         </div>
 
-        <% flash.each do |key, value| %>
-          <%= content_tag(:div, value, class: "#{key}") %>
-        <% end %>
+        <%# フラッシュメッセージ　%>
+        <div class="toppage_kininaru col-sm-12 col-md-3">
+          <% flash.each do |key, value| %>
+            <%= content_tag(:div, value, class: "#{key}") %>
+          <% end %>
 
-        <%= yield %>
+          <%= yield %>
+
+      </div>
+
       </div>
     </div>
 
