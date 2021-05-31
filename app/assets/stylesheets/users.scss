@@ -32,8 +32,6 @@
   margin-left: 1rem;
 }
 
-
-
 //ユーザー一覧
 .user_index{
   display: flex;
@@ -55,4 +53,23 @@
 .user_name{
   text-align: left;
   font-size: 3.5rem;
+}
+
+//吹き出し
+.balloon {
+  background-color: #d1deed;
+  padding: 20px;
+  position: relative;
+  border-radius: 100%;
+  width:70%;
+}
+.balloon:after {
+  border-bottom: 12px solid #d1deed;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+  content: '';
+  margin-left: -10px;
+  position: absolute;
+  top: -12px;
+  left: 50%;
 }

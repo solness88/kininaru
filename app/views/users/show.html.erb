@@ -6,9 +6,7 @@
       <div>
         <div><%= link_to recommend_news.title, recommend_news.link, class:"kininaru_article_text" %></div>
           <div class="logos_horizontal">
-            <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#Modal<%= recommend_news.id %>">
-              コメント
-            </button>
+
             <div data-toggle="modal" data-target="#Modal<%= recommend_news.id %>">
               <i class="far fa-comment"></i>
             </div>
@@ -27,6 +25,13 @@
         <div><%= image_tag recommend_news.image, class:"kininaru_image" %></div>
       </div>
     </div>
+    <div class="balloon">
+      <%= recommend_news.comments.each do |recommend_comment| %>
+        <%= recommend_comment.content %>
+      <% end %>
+    </div>
+
+
 
   <!-- 「おすすめニュース」のモーダル -->
     <div class="modal fade" id="Modal<%= recommend_news.id %>" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
@@ -45,25 +50,30 @@
             <p>
               <% if recommend_news.user.image.url.present? %><%= image_tag recommend_news.user.image.url, class:"comment_user_image" %><% end %>
               <%= recommend_news.user.name %>さんのコメント
-              <input type="button" class="comment_form_btn" value="コメント欄">
+              <% if recommend_news.user == current_user %>
+                <input type="button" class="comment_form_btn" value="コメント欄">
+              <% end %>
             </p>
             <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
             <div id="comments_area<%= recommend_news.id %>">
               <%= render partial: 'comments/index', locals: { comments: recommend_news.comments, new: recommend_news } %>
             </div>
-            <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
-            <div style="display: none" class="comments_form<%= recommend_news.id %>">
-              <%= render partial: 'comments/form', locals: { comment: recommend_news.comments.build, new: recommend_news } %>
-            </div>
 
-            <!-- コメント入力欄の表示・非表示を切り替え -->
-            <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
-            </script>
-            <script>
-              $('.comment_form_btn').click(function(){
-                $('.comments_form<%= recommend_news.id %>').fadeToggle('slow');
-              });
-            </script>
+            <% if recommend_news.user == current_user %>
+              <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
+              <div style="display: none" class="comments_form<%= recommend_news.id %>">
+                <%= render partial: 'comments/form', locals: { comment: recommend_news.comments.build, new: recommend_news } %>
+              </div>
+
+              <!-- コメント入力欄の表示・非表示を切り替え -->
+              <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+              </script>
+              <script>
+                $('.comment_form_btn').click(function(){
+                  $('.comments_form<%= recommend_news.id %>').fadeToggle('slow');
+                });
+              </script>
+            <% end %>
 
             <div class="testtesttest">
             <% @favorite = current_user.favorites.find_by(new_id: recommend_news.id) %>
@@ -89,21 +99,18 @@
 
 
 
-
-
-
-
-
-  <!-- 「気になる」したニュースを表示 -->
-  <div class="accordion" id="accordion-4">
-    <div class="card">
-      <div class="card-header" id="header-4a">
-        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#card-4a" aria-expanded="true" aria-controls="card-4a">
+  <!-- アコーディオンここから、気になる」したニュースを表示 -->
+  <div class="panel-group" id="sampleAccordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <a data-toggle="collapse" data-parent="#sampleAccordion" href="#sampleAccordionCollapse2">
             気になるニュース
-        </button>
+          </a>
+        </h3>
       </div>
-      <div id="card-4a" class="collapse" aria-labelledby="header-4a" data-parent="#accordion-4">
-        <div class="card-body">
+      <div id="sampleAccordionCollapse2" class="panel-collapse collapse">
+        <div class="panel-body">
           <% @user_news.each do |user_news| %>
             <% if user_news.recommend == false %>
             <div class="toppage_kininaru_article">
@@ -111,9 +118,6 @@
                 <div><%= link_to user_news.title, user_news.link, class:"kininaru_article_text" %></div>
                 <div class="logos_horizontal">
 
-                <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#Modal<%= user_news.id %>">
-                  コメント
-                </button>
                 <div data-toggle="modal" data-target="#Modal<%= user_news.id %>">
                   <i class="far fa-comment"></i>
                 </div>
@@ -133,7 +137,6 @@
               </div>
             </div>
             <% end %>
-
 
             <!-- 「気になる」したニュースのモーダル -->
               <div class="modal fade" id="Modal<%= user_news.id %>" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
@@ -189,29 +192,33 @@
                     </div>
                   </div>
                 </div>
-              </div>
+            </div>
+              <!-- 気になるニュースのモーダルここまで -->
               <% end %>
+
             </div>
           </div>
         </div>
-
-      <!-- お気に入りしたニュースを表示 -->
-      <div class="card">
-        <div class="card-header" id="header-4b">
-          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#card-4b" aria-expanded="false" aria-controls="card-4b">
+        <!-- 気になるニュースのアコーディオン終わり -->
+        <!-- ここからお気に入りニュースのアコーディオン -->
+        <div class="panel panel-default">
+      		<div class="panel-heading">
+      			<h3 class="panel-title">
+      				<a data-toggle="collapse" data-parent="#sampleAccordion" href="#sampleAccordionCollapse3">
               お気に入りしたニュース
-          </button>
+            </a>
+          </h3>
         </div>
-        <div id="card-4b" class="collapse" aria-labelledby="header-4b" data-parent="#accordion-4">
-          <div class="card-body">
+        <div id="sampleAccordionCollapse3" class="panel-collapse collapse">
+          <div class="panel-body">
+
+
             <% @favorite_news.each do |favorite_news| %>
             <div class="toppage_kininaru_article">
               <div>
                 <div><%= link_to favorite_news.title, favorite_news.link, class:"kininaru_article_text" %></div>
                 <div class="logos_horizontal">
-                  <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#Modal<%= favorite_news.id %>">
-                    コメント
-                  </button>
+
                   <div data-toggle="modal" data-target="#Modal<%= favorite_news.id %>">
                     <i class="far fa-comment"></i>
                   </div>
@@ -224,7 +231,6 @@
                 <div><%= image_tag favorite_news.image, class:"kininaru_image" %></div>
               </div>
             </div>
-
 
             <!-- お気に入りしたニュースのモーダル -->
               <div class="modal fade" id="Modal<%= favorite_news.id %>" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
@@ -280,13 +286,25 @@
                       <% end %>
                       </div>
                     </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                    </div>
                   </div>
                 </div>
               </div>
+              <% end %>
             </div>
-          </div>
+            <!-- お気に入りしたニュースのモーダルここまで -->
 
-            <% end %>
+          </div>
         </div>
       </div>
-    </div>
+
+
+
+
+
+
+
+
+  </div>
