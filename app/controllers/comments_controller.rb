@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
       if @comment.save
         format.js { render :index }
       else
-        format.html { redirect_to news_index_path, notice: '投稿できませんでした...' }
+        format.html { redirect_to news_index_path, notice: '空欄のコメントは投稿できません' }
       end
     end
   end

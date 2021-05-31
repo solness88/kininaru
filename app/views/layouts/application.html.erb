@@ -63,9 +63,9 @@
               <% else %>
                 <%= image_tag news["media"], class:"article_image" %>
               <% end %>
-            <%= link_to news["title"], news["link"], class:"article"%>
+            <%= link_to news["title"], news["link"], class:"FREE_NEWS_article"%>
             <% if logged_in? %>
-              <%= button_to '気になる', {controller: '/news', action: 'create'},
+              <div id="button_kininaru"><%= button_to '気になる', {controller: '/news', action: 'create'},
                                        {params: {
                                                 new: {
                                                       title: news["title"],
@@ -74,7 +74,7 @@
                                                       user_id: current_user.id
                                                     },
                                                 },
-                                        class:"kininaru_button"} %>
+                                        class:"kininaru_button"} %></div>
             <% end %>
           </div>
           <% end %>

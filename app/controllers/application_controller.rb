@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   require "json"
 
   def newsapi
-    sleep 0.5
+    sleep 1
     url = URI("https://free-news.p.rapidapi.com/v1/search?q=US China COVID Tech Biden&lang=en&page=1&page_size=25")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true

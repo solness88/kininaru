@@ -30,7 +30,7 @@ class NewsController < ApplicationController
   def destroy
     @new.destroy
     sleep 0.6
-    redirect_to news_index_path
+    redirect_to news_index_path, notice: "気になるニュースを削除しました"
   end
 
   private

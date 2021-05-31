@@ -12,8 +12,11 @@ ja:
         name: 名前
         email: メールアドレス
         password: パスワード
+        password_confirmation: 確認用パスワード
         activated: アクティブフラグ
         admin: 管理者フラグ
+      comment:
+        content: コメント内容
   date:
     abbr_day_names:
     - 日
