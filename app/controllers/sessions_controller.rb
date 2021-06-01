@@ -10,7 +10,11 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
       sleep 0.6
-      redirect_to users_path
+      if user.admin == true
+        redirect_to admin_users_path
+      else
+        redirect_to users_path
+      end
     else
       flash.now[:danger] = 'ログインに失敗しました。メールアドレスとパスワードをご確認ください。'
       sleep 0.6
