@@ -25,4 +25,3 @@ User.create!(
   password_confirmation: "123qwe",
   admin: true
 )
-end

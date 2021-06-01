@@ -8,7 +8,7 @@ RSpec.describe 'ニュース保存機能', type: :system do
         end
       end
     end
-    describe '気になるニュース登録の動作確認' do
+    describe '気になるニュース登録・削除' do
       before do
         user = FactoryBot.create(:user)
         admin_user = FactoryBot.create(:admin_user)
@@ -68,7 +68,49 @@ RSpec.describe 'ニュース保存機能', type: :system do
           expect(page).to have_content 'admin_test'
         end
       end
+      context 'ユーザーを削除した場合' do
+        before do
+        end
+      end
     end
-
+    describe 'ログイン機能' do
+      before do
+        admin_user = FactoryBot.create(:admin_user)
+        FactoryBot.create(:new, user: admin_user)
+        visit new_session_path
+      end
+      context 'ログインに成功した場合' do
+        it 'ユーザー一覧画面に遷移し「このチームのメンバー」の文字が表示される' do
+          fill_in 'Email', with: 'admin-guest@admin-guest.com'
+          fill_in 'Password', with:'123qwe'
+          click_button 'Log in'
+          expect(page).to have_content 'このチームのメンバー'
+        end
+      end
+      context 'ログインに失敗した場合' do
+        it 'ログインに失敗した旨のメッセージが表示される' do
+          fill_in 'Email', with: 'admin-guest@admin-guest.com'
+          fill_in 'Password', with:'111111'
+          click_button 'Log in'
+          expect(page).to have_content 'メールアドレスとパスワードをご確認ください。'
+        end
+      end
+    end
+    describe 'ログアウト機能' do
+      before do
+        admin_user = FactoryBot.create(:admin_user)
+        FactoryBot.create(:new, user: admin_user)
+        visit new_session_path
+        fill_in 'Email', with: 'admin-guest@admin-guest.com'
+        fill_in 'Password', with:'123qwe'
+        click_button 'Log in'
+      end
+      context 'ログアウトした場合' do
+        it 'ログイン画面に遷移する' do
+          find(".logout").click
+          expect(page).to have_content 'ログイン'
+        end
+      end
+    end
   end
 end

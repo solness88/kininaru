@@ -42,7 +42,7 @@
 
       <li class="navbar-nav header_item header_item header_hello">
       <% if logged_in? %>
-        <%= link_to "ログアウト", session_path(current_user.id), method: :delete, class:"header_item" %>
+        <%= link_to "ログアウト", session_path(current_user.id), method: :delete, class:"header_item logout" %>
       <% else %>
         <%= link_to "ログイン", new_session_path, class:"header_item" %>
       </li>
