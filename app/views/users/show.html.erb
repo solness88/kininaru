@@ -51,7 +51,10 @@
               <% if recommend_news.user.image.url.present? %><%= image_tag recommend_news.user.image.url, class:"comment_user_image" %><% end %>
               <%= recommend_news.user.name %>さんのコメント
               <% if recommend_news.user == current_user %>
-                <input type="button" class="comment_form_btn" value="コメント欄">
+                <!--<input type="button" class="comment_form_btn" value="コメント欄"> -->
+                <button type="button" class="btn btn-primary btn-sm comment_btn" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    コメント欄
+                </button>
               <% end %>
             </p>
             <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
@@ -61,9 +64,13 @@
 
             <% if recommend_news.user == current_user %>
               <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
-              <div style="display: none" class="comments_form<%= recommend_news.id %>">
+              <div style="display: none" class="comments_form<%= recommend_news.id %> collapse" id="collapseExample">
                 <%= render partial: 'comments/form', locals: { comment: recommend_news.comments.build, new: recommend_news } %>
               </div>
+
+              <!--<div class="collapse" id="collapseExample">
+                <<%= render partial: 'comments/form', locals: { comment: recommend_news.comments.build, new: recommend_news } %>
+              </div> -->
 
               <!-- コメント入力欄の表示・非表示を切り替え -->
               <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
@@ -155,7 +162,10 @@
                       <p>
                         <% if user_news.user.image.url.present? %><%= image_tag user_news.user.image.url, class:"comment_user_image" %><% end %>
                         <%= user_news.user.name %>さんのコメント
-                        <input type="button" class="comment_form_btn" value="コメント欄">
+                        <!--<input type="button" class="comment_form_btn" value="コメント欄"> -->
+                        <button type="button" class="btn btn-primary btn-sm comment_btn" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            コメント欄
+                        </button>
                       </p>
                       <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
                       <div id="comments_area<%= user_news.id %>">
@@ -163,6 +173,10 @@
                       </div>
                       <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
                       <div style="display: none" class="comments_form<%= user_news.id %>">
+                        <%= render partial: 'comments/form', locals: { comment: user_news.comments.build, new: user_news } %>
+                      </div>
+
+                      <div class="collapse" id="collapseExample">
                         <%= render partial: 'comments/form', locals: { comment: user_news.comments.build, new: user_news } %>
                       </div>
 
@@ -249,7 +263,12 @@
                       <p>
                         <% if favorite_news.user.image.url.present? %><%= image_tag favorite_news.user.image.url, class:"comment_user_image" %><% end %>
                         <%= favorite_news.user.name %>さんのコメント
-                        <% if params[:id] == current_user.id %><input type="button" class="comment_form_btn" value="コメント欄"><% end %>
+                        <% if params[:id] == current_user.id %>
+                          <!--<input type="button" class="comment_form_btn" value="コメント欄"> -->
+                          <button type="button" class="btn btn-primary btn-sm comment_btn" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                              コメント欄
+                          </button>
+                        <% end %>
                       </p>
 
                       <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
@@ -262,6 +281,10 @@
                       <div class="modal_comments">
 
                         <div style="display: none" class="comments_form<%= favorite_news.id %>">
+                          <%= render partial: 'comments/form', locals: { comment: favorite_news.comments.build, new: favorite_news } %>
+                        </div>
+
+                        <div class="collapse" id="collapseExample">
                           <%= render partial: 'comments/form', locals: { comment: favorite_news.comments.build, new: favorite_news } %>
                         </div>
 

@@ -1,5 +1,6 @@
 RSpec.describe 'ニュース保存機能', type: :system do
   describe 'APIの動作確認' do
+=begin
     describe 'APIの動作確認' do
       context 'ルートページにアクセスした場合' do
         it 'FREE NEWS APIの記事がが表示される' do
@@ -109,6 +110,29 @@ RSpec.describe 'ニュース保存機能', type: :system do
         it 'ログイン画面に遷移する' do
           find(".logout").click
           expect(page).to have_content 'ログイン'
+        end
+      end
+    end
+=end
+
+
+    describe 'コメント機能' do
+      before do
+        admin_user = FactoryBot.create(:admin_user)
+        FactoryBot.create(:new, user: admin_user)
+        visit new_session_path
+        fill_in 'Email', with: 'admin-guest@admin-guest.com'
+        fill_in 'Password', with:'123qwe'
+        click_button 'Log in'
+        visit news_index_path
+      end
+      context 'コメントを登録した場合' do
+        it 'コメント内容が表示される' do
+          find(".fa-comment").click
+          find(".comment_btn").click
+          find(".comment_field").set("admin-test")
+          click_button '登録する'
+          expect(page).to have_content 'comment_test'
         end
       end
     end
