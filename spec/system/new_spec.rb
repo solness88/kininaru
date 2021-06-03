@@ -1,6 +1,5 @@
 RSpec.describe 'ニュース保存機能', type: :system do
   describe 'APIの動作確認' do
-=begin
     describe 'APIの動作確認' do
       context 'ルートページにアクセスした場合' do
         it 'FREE NEWS APIの記事がが表示される' do
@@ -22,7 +21,7 @@ RSpec.describe 'ニュース保存機能', type: :system do
       context '「気になるニュース」ボタンを押した場合' do
         it '当該ニュースが画面右に表示される' do
           visit news_index_path
-          first('.button_kininaru').click
+          first('気になる').click
           expect '.kininaru_article_text'.to be_visible
         end
       end
@@ -34,6 +33,8 @@ RSpec.describe 'ニュース保存機能', type: :system do
         end
       end
     end
+=begin
+
     describe 'ユーザーCRUD機能' do
       before do
         #user = FactoryBot.create(:user)
@@ -58,7 +59,7 @@ RSpec.describe 'ニュース保存機能', type: :system do
       context 'ユーザー名を変更した場合' do
         before do
           visit admin_users_path
-          find(".btn-primary").click
+          find(".user_edit_btn").click
         end
         it 'ユーザー一覧に変更後のユーザー名が表示される' do
           fill_in 'Name', with: 'admin_test'
@@ -113,7 +114,6 @@ RSpec.describe 'ニュース保存機能', type: :system do
         end
       end
     end
-=end
 
 
     describe 'コメント機能' do
@@ -130,11 +130,13 @@ RSpec.describe 'ニュース保存機能', type: :system do
         it 'コメント内容が表示される' do
           find(".fa-comment").click
           find(".comment_btn").click
-          find(".comment_field").set("admin-test")
+          fill_in 'comment_test', with: 'comment_testß'
           click_button '登録する'
           expect(page).to have_content 'comment_test'
         end
       end
     end
+=end
+
   end
 end

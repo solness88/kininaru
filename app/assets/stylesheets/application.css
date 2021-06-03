@@ -22,6 +22,7 @@
 
  body {
    text-align: center;
+   background-color: #f0f5f5
  }
 
  li{
@@ -113,28 +114,33 @@
    display: flex;
    flex-wrap: wrap;
    justify-content: flex-wrap;
+   max-height: 1200px;
  }
 
  .toppage_article{
    max-width: 160px;
- 	 height:auto;
+   max-height: 250px;
    display: flex;
    flex-direction: column;
    margin: 1.5rem;
    border: 1px solid #000000;
    border-radius: 10px;
    box-shadow: 10px 10px 7px rgba(0,0,0,0.4);
+   background-color: white;
 }
 
 .toppage_article:hover{
-  width:calc(17% - 15px);
-  height:auto;
+/*  width:calc(17% - 15px);
+  height:auto;*/
+  max-width: 160px;
+  max-height: 250px;
   display: flex;
   flex-direction: column;
   margin: 1.5rem;
   border: 1px solid #000000;
   border-radius: 10px;
   box-shadow: 10px 10px 4px rgba(0,0,0,0.6);
+  background-color: white;
 }
 
  .article_image{

@@ -38,7 +38,9 @@
       <% end %>
       </li>
 
-      <li class="navbar-nav header_item header_item header_hello"><%= link_to "メンバーを追加", new_admin_user_path, class:"header_item" %></li>
+      <% if current_user && current_user.admin? %>
+        <li class="navbar-nav header_item header_item header_hello"><%= link_to "メンバーを追加", new_admin_user_path, class:"header_item" %></li>
+      <% end %>  
 
       <li class="navbar-nav header_item header_item header_hello">
       <% if logged_in? %>

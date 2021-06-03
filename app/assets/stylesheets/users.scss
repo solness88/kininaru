@@ -55,6 +55,31 @@
   font-size: 3.5rem;
 }
 
+.user_edit_delete{
+  display: flex;
+  flex-direction: column;
+  margin-left: 25px;
+}
+
+.edit_delete{
+  display: flex;
+}
+
+.user_edit_btn{
+  background-color: #3295a8;
+  color: white;
+  padding: 3px;
+  border-radius: 20%;
+  margin-right: 10px;
+}
+
+.user_delete_btn{
+  background-color: #ba4f22;
+  color: white;
+  padding: 3px;
+  border-radius: 20%;
+}
+
 //吹き出し
 .balloon {
   background-color: #d1deed;

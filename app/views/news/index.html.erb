@@ -43,7 +43,7 @@
                 <% end %>
                 <%= new.user.name %>さんのコメント
                 <% if new.user == current_user %>
-                  <button type="button" class="btn btn-primary btn-sm comment_btn" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                  <button type="button" class="comment_btn" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                       コメント欄
                   </button>
                 <% end %>
@@ -103,8 +103,7 @@
 
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-              <button type="button" class="btn btn-primary">保存</button>
+              <button type="button" class="comment_close_btn" data-dismiss="modal">閉じる</button>
             </div>
           </div>
         </div>
