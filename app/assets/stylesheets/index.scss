@@ -21,6 +21,8 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-decoration: none;
+  color: #343B54;
 }
 
 .kininaru_image{
@@ -77,6 +79,14 @@
   width:70%;
   margin-left: auto;
   margin-right: auto
+}
+
+.fa-trash-alt{
+  color: #343B54;
+}
+
+.fa-heart a{
+  text-decoration: none;
 }
 
 

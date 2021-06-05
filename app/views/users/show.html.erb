@@ -107,17 +107,15 @@
 
 
   <!-- アコーディオンここから、気になる」したニュースを表示 -->
-  <div class="panel-group" id="sampleAccordion">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">
-          <a data-toggle="collapse" data-parent="#sampleAccordion" href="#sampleAccordionCollapse2">
-            気になるニュース
-          </a>
-        </h3>
-      </div>
-      <div id="sampleAccordionCollapse2" class="panel-collapse collapse">
-        <div class="panel-body">
+  <div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          気になるニュース
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
           <% @user_news.each do |user_news| %>
             <% if user_news.recommend == false %>
             <div class="toppage_kininaru_article">
@@ -206,7 +204,7 @@
                     </div>
                   </div>
                 </div>
-            </div>
+              </div>
               <!-- 気になるニュースのモーダルここまで -->
               <% end %>
 
@@ -215,17 +213,14 @@
         </div>
         <!-- 気になるニュースのアコーディオン終わり -->
         <!-- ここからお気に入りニュースのアコーディオン -->
-        <div class="panel panel-default">
-      		<div class="panel-heading">
-      			<h3 class="panel-title">
-      				<a data-toggle="collapse" data-parent="#sampleAccordion" href="#sampleAccordionCollapse3">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
               お気に入りしたニュース
-            </a>
-          </h3>
-        </div>
-        <div id="sampleAccordionCollapse3" class="panel-collapse collapse">
-          <div class="panel-body">
-
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
 
             <% @favorite_news.each do |favorite_news| %>
             <div class="toppage_kininaru_article">
@@ -322,12 +317,6 @@
           </div>
         </div>
       </div>
-
-
-
-
-
-
 
 
   </div>

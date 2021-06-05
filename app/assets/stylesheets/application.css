@@ -22,7 +22,8 @@
 
  body {
    text-align: center;
-   background-color: #f0f5f5
+   background-color: #f0f5f5;
+   font-size: 1.45rem;
  }
 
  li{
@@ -93,6 +94,16 @@
    color: white;
  }
 
+ .navbar-light .navbar-brand {
+    color: white;
+    font-size: 16px;
+}
+
+.nav-item{
+  margin-right:10px;
+  margin-left:10px;
+}
+
  .header_items{
    display: flex;
    justify-content: space-between;
@@ -100,10 +111,16 @@
 
  .header_item{
    color: white;
+   text-decoration: none;
 }
 
  .header_item_user{
    margin-left: auto;
+ }
+
+ .header_mypage_link{
+   display: flex;
+   color: white;
  }
 
 .container-fluid{
@@ -155,8 +172,17 @@
    height:5.6em;
  }
 
+ .FREE_NEWS_article{
+   text-decoration: none;
+   color: #343B54;
+ }
+
  .kininaru_button{
    margin:1rem 0 1rem 0;
+ }
+
+ .body_part{
+   padding-bottom: 100px;
  }
 
  footer {

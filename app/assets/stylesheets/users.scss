@@ -55,6 +55,11 @@
   font-size: 3.5rem;
 }
 
+.user_name a{
+  text-decoration: none;
+  color: #343B54;
+}
+
 .user_edit_delete{
   display: flex;
   flex-direction: column;
@@ -69,15 +74,22 @@
   background-color: #3295a8;
   color: white;
   padding: 3px;
-  border-radius: 20%;
+  border-radius: 5px;
   margin-right: 10px;
+  font-size: 12px;
+  padding: 5px;
+  text-decoration: none;
 }
 
 .user_delete_btn{
   background-color: #ba4f22;
   color: white;
   padding: 3px;
-  border-radius: 20%;
+  border-radius: 5px;
+  margin-right: 10px;
+  font-size: 12px;
+  padding: 5px;
+  text-decoration: none;
 }
 
 //吹き出し

@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <!--<meta name="viewport" content="width=device-width">-->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,36 +13,35 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-
-
   <body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="container-fluid">
+      <a class="header_item"><%= link_to "気になるニュース", news_index_path, class:"header_item navbar-brand header_hello" %></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <% if logged_in? %>
+          <li class="nav-item">
+              <%= link_to "#{current_user.name}さんのマイページ", user_path(current_user.id), class:"header_item" %>
+          </li>
+          <% end %>
+          <li class="nav-item">
+              <% if current_user && current_user.admin? %>
+                <%= link_to "メンバーの一覧", admin_users_path, class:"header_item" %>
+              <% else %>
+                <%= link_to "メンバーの一覧", users_path, class:"header_item" %>
+              <% end %>
+          </li>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <li class="header_item"><%= link_to "気になるニュース", news_index_path, class:"header_item navbar-brand" %></li>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-    <ul class="navbar-nav">
-      <% if logged_in? %>
-        <li class="header_item header_hello">こんにちは、<%= current_user.name %>さん。</li>
-        <li class="header_item header_hello"><%= link_to "マイページ", user_path(current_user.id), class:"header_item" %></li>
-      <% end %>
-
-      <li class="navbar-nav header_item_user header_item header_hello">
       <% if current_user && current_user.admin? %>
-        <%= link_to "メンバーの一覧", admin_users_path, class:"header_item" %>
-      <% else %>
-        <%= link_to "メンバーの一覧", users_path, class:"header_item" %>
-      <% end %>
+      <li class="nav-item">
+          <%= link_to "メンバーを追加", new_admin_user_path, class:"header_item" %>
       </li>
+      <% end %>
 
-      <% if current_user && current_user.admin? %>
-        <li class="navbar-nav header_item header_item header_hello"><%= link_to "メンバーを追加", new_admin_user_path, class:"header_item" %></li>
-      <% end %>  
-
-      <li class="navbar-nav header_item header_item header_hello">
+      <li class="nav-item">
       <% if logged_in? %>
         <%= link_to "ログアウト", session_path(current_user.id), method: :delete, class:"header_item logout" %>
       <% else %>
@@ -53,7 +52,7 @@
   </div>
 </nav>
 
-    <div class="container-fluid">
+    <div class="container-fluid body_part">
       <div class="row">
         <div class="col-md-1">
         </div>
