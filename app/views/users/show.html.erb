@@ -7,7 +7,7 @@
         <div><%= link_to recommend_news.title, recommend_news.link, class:"kininaru_article_text" %></div>
           <div class="logos_horizontal">
 
-            <div data-toggle="modal" data-target="#Modal<%= recommend_news.id %>">
+            <div data-bs-toggle="modal" data-bs-target="#exampleModal<%= recommend_news.id %>">
               <i class="far fa-comment"></i>
             </div>
             <%= link_to news_path(recommend_news.id, post: {recommend: false}), method: :put do %>
@@ -34,25 +34,22 @@
 
 
   <!-- 「おすすめニュース」のモーダル -->
-    <div class="modal fade" id="Modal<%= recommend_news.id %>" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="Modal">
-              <div class="d-flex align-items-end"><%= link_to recommend_news.title, recommend_news.link %></div>
-              <div><%= image_tag recommend_news.image, class:"kininaru_image modal_image" %></div>
-            </h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+  <div class="modal fade" id="exampleModal<%= recommend_news.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="Modal">
+            <div class="d-flex align-items-end"><%= link_to recommend_news.title, recommend_news.link %></div>
+            <div><%= image_tag recommend_news.image, class:"kininaru_image modal_image" %></div>
+          </h5>
+        </div>
           <div class="modal-body">
             <p>
               <% if recommend_news.user.image.url.present? %><%= image_tag recommend_news.user.image.url, class:"comment_user_image" %><% end %>
               <%= recommend_news.user.name %>さんのコメント
               <% if recommend_news.user == current_user %>
                 <!--<input type="button" class="comment_form_btn" value="コメント欄"> -->
-                <button type="button" class="btn btn-primary btn-sm comment_btn" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                <button class="comment_btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     コメント欄
                 </button>
               <% end %>
@@ -64,8 +61,10 @@
 
             <% if recommend_news.user == current_user %>
               <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
-              <div style="display: none" class="comments_form<%= recommend_news.id %> collapse" id="collapseExample">
-                <%= render partial: 'comments/form', locals: { comment: recommend_news.comments.build, new: recommend_news } %>
+              <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                  <%= render partial: 'comments/form', locals: { comment: recommend_news.comments.build, new: recommend_news } %>
+                </div>
               </div>
 
               <!--<div class="collapse" id="collapseExample">
@@ -95,7 +94,7 @@
 
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+            <button type="button" class="comment_close_btn" data-bs-dismiss="modal">閉じる</button>
           </div>
         </div>
       </div>
@@ -145,24 +144,21 @@
 
             <!-- 「気になる」したニュースのモーダル -->
               <div class="modal fade" id="Modal<%= user_news.id %>" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="Modal">
                         <div class="d-flex align-items-end"><%= link_to user_news.title, user_news.link %></div>
                         <div><%= image_tag user_news.image, class:"kininaru_image modal_image" %></div>
                       </h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
                     </div>
                     <div class="modal-body">
                       <p>
                         <% if user_news.user.image.url.present? %><%= image_tag user_news.user.image.url, class:"comment_user_image" %><% end %>
                         <%= user_news.user.name %>さんのコメント
                         <!--<input type="button" class="comment_form_btn" value="コメント欄"> -->
-                        <button type="button" class="btn btn-primary btn-sm comment_btn" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                            コメント欄
+                        <button class="comment_btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                          コメント欄
                         </button>
                       </p>
                       <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
@@ -175,7 +171,9 @@
                       </div>
 
                       <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
                         <%= render partial: 'comments/form', locals: { comment: user_news.comments.build, new: user_news } %>
+                        </div>
                       </div>
 
                       <!-- コメント入力欄の表示・非表示を切り替え -->
@@ -200,7 +198,7 @@
 
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                      <button type="button" class="comment_close_btn" data-dismiss="modal">閉じる</button>
                     </div>
                   </div>
                 </div>
@@ -227,8 +225,7 @@
               <div>
                 <div><%= link_to favorite_news.title, favorite_news.link, class:"kininaru_article_text" %></div>
                 <div class="logos_horizontal">
-
-                  <div data-toggle="modal" data-target="#Modal<%= favorite_news.id %>">
+                  <div data-bs-toggle="modal" data-bs-target="#exampleModal<%= favorite_news.id %>">
                     <i class="far fa-comment"></i>
                   </div>
                   <div class = "heart_<%= favorite_news.id %>">
@@ -242,17 +239,14 @@
             </div>
 
             <!-- お気に入りしたニュースのモーダル -->
-              <div class="modal fade" id="Modal<%= favorite_news.id %>" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal fade" id="exampleModal<%= favorite_news.id %>" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+                <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="Modal">
                         <div class="d-flex align-items-end"><%= link_to favorite_news.title, favorite_news.link %></div>
                         <div><%= image_tag favorite_news.image, class:"kininaru_image modal_image" %></div>
                       </h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
                     </div>
                     <div class="modal-body">
                       <p>
@@ -260,8 +254,8 @@
                         <%= favorite_news.user.name %>さんのコメント
                         <% if params[:id] == current_user.id %>
                           <!--<input type="button" class="comment_form_btn" value="コメント欄"> -->
-                          <button type="button" class="btn btn-primary btn-sm comment_btn" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                              コメント欄
+                          <button class="comment_btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            コメント欄
                           </button>
                         <% end %>
                       </p>
@@ -280,7 +274,9 @@
                         </div>
 
                         <div class="collapse" id="collapseExample">
+                          <div class="card card-body">
                           <%= render partial: 'comments/form', locals: { comment: favorite_news.comments.build, new: favorite_news } %>
+                          </div>
                         </div>
 
                         <!-- コメント入力欄の表示・非表示を切り替え -->
