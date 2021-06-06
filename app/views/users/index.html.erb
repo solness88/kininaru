@@ -1,13 +1,13 @@
   <h2>このチームのメンバー</h2>
   <% @users.each do |user| %>
-  <div class="user_index row">
-    <div class="col-sm-1"></div>
+  <div class="user_index">
     <div>
       <% if user.image.url.present? %>
         <%= image_tag user.image.url, class:"user_image" %>
       <% end %>
     </div>
-    <div class="user_name col-sm-6"><%= link_to user.name, user_path(user.id) %></div>
-    <div class="col-sm-1"></div>
+    <div class="user_edit_delete">
+      <div class="user_name"><%= link_to user.name, user_path(user.id) %></div>
+    </div>
   </div>
   <% end %>

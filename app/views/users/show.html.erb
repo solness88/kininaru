@@ -6,7 +6,6 @@
       <div>
         <div><%= link_to recommend_articles.title, recommend_articles.link, class:"kininaru_article_text" %></div>
           <div class="logos_horizontal">
-
             <div data-bs-toggle="modal" data-bs-target="#exampleModal<%= recommend_articles.id %>">
               <i class="far fa-comment"></i>
             </div>
@@ -27,7 +26,7 @@
       </div>
     </div>
     <div class="balloon">
-      <%= recommend_articles.comments.each do |recommend_comment| %>
+      <% recommend_articles.comments.each do |recommend_comment| %>
         <%= recommend_comment.content %>
       <% end %>
     </div>

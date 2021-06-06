@@ -26,12 +26,12 @@ class SessionsController < ApplicationController
     user = User.find_by(email: "admin-guest@admin-guest.com")
     session[:user_id] = user.id
     sleep 0.6
-    redirect_to users_path
+    redirect_to adin_users_path
   end
 
 
   def guest
-    user = User.find_by(email: "guest@guest.com")
+    user = User.find_by(email: "guest0@guest.com")
     session[:user_id] = user.id
     sleep 0.6
     redirect_to users_path

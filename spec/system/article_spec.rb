@@ -21,8 +21,8 @@ RSpec.describe 'ニュース保存機能', type: :system do
       context '「気になるニュース」ボタンを押した場合' do
         it '当該ニュースが画面右に表示される' do
           visit articles_path
-          first('気になる').click
-          expect '.kininaru_article_text'.to be_visible
+          click_on '気になる', match: :first
+          expect(page).to have_content 'tokyo'
         end
       end
       context '「気になるニュース」の削除ボタンを押した場合' do

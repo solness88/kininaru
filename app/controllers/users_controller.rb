@@ -13,11 +13,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      if @uesr.admin == true
-        redirect_to admin_users_path
-      else
-        redirect_to users_path
-      end
+      redirect_to admin_users_path
     else
       render :new
     end

@@ -5,7 +5,11 @@ class Admin::UsersController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
 
   def index
-    @users = User.all
+    if current_user.admin == false
+      redirect_to articles_path, notice: "管理者ページの閲覧には管理者権限が必要です"
+    else
+      @users = User.all
+    end
   end
 
   def new
