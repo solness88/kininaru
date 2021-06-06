@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-
+  #before_action :articlesapi
   before_action :login_required, except:[:home]
   protect_from_forgery with: :exception
   include SessionsHelper
@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   require 'openssl'
   require "json"
 
-  def newsapi
+  def articlesapi
     sleep 1
     url = URI("https://free-news.p.rapidapi.com/v1/search?q=US China COVID Tech Biden&lang=en&page=1&page_size=25")
     http = Net::HTTP.new(url.host, url.port)

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :newsapi
+  before_action :articlesapi
   skip_before_action :login_required, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -37,9 +37,9 @@ class UsersController < ApplicationController
   def show
     sleep 0.6
     @user = User.find(params[:id])
-    @user_news = New.where(user_id: @user.id)
-    @favorite_news = @user.favorite_news
-    @recommend_news =  New.where(user_id: @user.id, recommend: true)
+    @user_articles = Article.where(user_id: @user.id)
+    @favorite_articles = @user.favorite_articles
+    @recommend_articles =  Article.where(user_id: @user.id, recommend: true)
   end
 
   def destroy

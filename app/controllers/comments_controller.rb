@@ -3,19 +3,19 @@ class CommentsController < ApplicationController
 
   def create
     # Blogをパラメータの値から探し出し,Blogに紐づくcommentsとしてbuildします。
-    @comment = @new.comments.build(comment_params)
+    @comment = @article.comments.build(comment_params)
     # クライアント要求に応じてフォーマットを変更
     respond_to do |format|
       if @comment.save
         format.js { render :index }
       else
-        format.html { redirect_to news_index_path, notice: '空欄のコメントは投稿できません' }
+        format.html { redirect_to articles_path, notice: '空欄のコメントは投稿できません' }
       end
     end
   end
 
   def edit
-    @comment = @new.comments.find(params[:id])
+    @comment = @article.comments.find(params[:id])
     respond_to do |format|
       flash.now[:notice] = 'コメントの編集中'
       format.js { render :edit }
@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment = @new.comments.find(params[:id])
+    @comment = @article.comments.find(params[:id])
     respond_to do |format|
       if @comment.update(comment_params)
         flash.now[:notice] = 'コメントが編集されました'
@@ -48,11 +48,11 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:new_id, :content)
+    params.require(:comment).permit(:article_id, :content)
   end
 
   def set_news
-    @new = New.find(params[:news_id])
+    @article = Article.find(params[:article_id])
   end
 
 end

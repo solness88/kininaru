@@ -1,24 +1,24 @@
-<% @favorite = current_user.favorites.find_by(new_id: new.id) %>
+<% @favorite = current_user.favorites.find_by(article_id: article.id) %>
 
 
   <% if @favorite.present? %>
     <%= link_to favorite_path(id: @favorite.id), method: :delete, remote: true do %>
-      <% if current_user.favorited_by?(new.id) %>
+      <% if current_user.favorited_by?(article.id) %>
         <i class="fas fa-heart heart-red"></i>
-        <%= new.favorites.count %>
+        <%= article.favorites.count %>
       <% else %>
         <i class="far fa-heart"></i>
-        <%= new.favorites.count %>
+        <%= article.favorites.count %>
       <% end %>
     <% end %>
     <% else %>
-      <%= link_to favorites_path(new_id: new.id), method: :post, remote: true do %>
-        <% if current_user.favorited_by?(new.id) %>
+      <%= link_to favorites_path(article_id: article.id), method: :post, remote: true do %>
+        <% if current_user.favorited_by?(article.id) %>
           <i class="fas fa-heart heart-red"></i>
-          <%= new.favorites.count %>
+          <%= article.favorites.count %>
         <% else %>
           <i class="far fa-heart"></i>
-          <%= new.favorites.count %>
+          <%= article.favorites.count %>
         <% end %>
       <% end %>
   <% end %>

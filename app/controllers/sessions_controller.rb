@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :newsapi
+  before_action :articlesapi
   skip_before_action :login_required, only: [:new, :create, :adminguest, :guest]
 
   def new

@@ -7,10 +7,10 @@ class User < ApplicationRecord
   before_validation { email.downcase! }
   has_secure_password
   mount_uploader :image, ImageUploader
-  has_many :news, dependent: :destroy
+  has_many :articles, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many :favorite_news, through: :favorites, source: :new
-  def favorited_by?(new_id)
-    favorites.where(new_id: new_id).exists?
+  has_many :favorite_articles, through: :favorites, source: :article
+  def favorited_by?(article_id)
+    favorites.where(article_id: article_id).exists?
   end
 end

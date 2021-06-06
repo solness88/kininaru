@@ -12,7 +12,7 @@ RSpec.describe 'ニュース保存機能', type: :system do
       before do
         user = FactoryBot.create(:user)
         admin_user = FactoryBot.create(:admin_user)
-        FactoryBot.create(:new, user: admin_user)
+        FactoryBot.create(:article, user: admin_user)
         visit new_session_path
         fill_in 'Email', with: 'admin-guest@admin-guest.com'
         fill_in 'Password', with:'123qwe'
@@ -20,26 +20,26 @@ RSpec.describe 'ニュース保存機能', type: :system do
       end
       context '「気になるニュース」ボタンを押した場合' do
         it '当該ニュースが画面右に表示される' do
-          visit news_index_path
+          visit articles_path
           first('気になる').click
           expect '.kininaru_article_text'.to be_visible
         end
       end
       context '「気になるニュース」の削除ボタンを押した場合' do
         it '削除メッセージが表示される' do
-          visit news_index_path
+          visit articles_path
           find(".fa-trash-alt").click
           expect(page).to have_content '気になるニュースを削除しました'
         end
       end
     end
-=begin
+
 
     describe 'ユーザーCRUD機能' do
       before do
         #user = FactoryBot.create(:user)
         admin_user = FactoryBot.create(:admin_user)
-        FactoryBot.create(:new, user: admin_user)
+        FactoryBot.create(:article, user: admin_user)
         visit new_session_path
         fill_in 'Email', with: 'admin-guest@admin-guest.com'
         fill_in 'Password', with:'123qwe'
@@ -72,13 +72,18 @@ RSpec.describe 'ニュース保存機能', type: :system do
       end
       context 'ユーザーを削除した場合' do
         before do
+          visit admin_users_path
+          find(".user_delete_btn").click
+        end
+        it 'ユーザー一覧に変更後のユーザー名が表示される' do
+          expect(page).to have_content 'ユーザーを削除しました'
         end
       end
     end
     describe 'ログイン機能' do
       before do
         admin_user = FactoryBot.create(:admin_user)
-        FactoryBot.create(:new, user: admin_user)
+        FactoryBot.create(:article, user: admin_user)
         visit new_session_path
       end
       context 'ログインに成功した場合' do
@@ -101,7 +106,7 @@ RSpec.describe 'ニュース保存機能', type: :system do
     describe 'ログアウト機能' do
       before do
         admin_user = FactoryBot.create(:admin_user)
-        FactoryBot.create(:new, user: admin_user)
+        FactoryBot.create(:article, user: admin_user)
         visit new_session_path
         fill_in 'Email', with: 'admin-guest@admin-guest.com'
         fill_in 'Password', with:'123qwe'
@@ -119,12 +124,12 @@ RSpec.describe 'ニュース保存機能', type: :system do
     describe 'コメント機能' do
       before do
         admin_user = FactoryBot.create(:admin_user)
-        FactoryBot.create(:new, user: admin_user)
+        FactoryBot.create(:article, user: admin_user)
         visit new_session_path
         fill_in 'Email', with: 'admin-guest@admin-guest.com'
         fill_in 'Password', with:'123qwe'
         click_button 'Log in'
-        visit news_index_path
+        visit articles_path
       end
       context 'コメントを登録した場合' do
         it 'コメント内容が表示される' do
@@ -136,7 +141,6 @@ RSpec.describe 'ニュース保存機能', type: :system do
         end
       end
     end
-=end
 
   end
 end

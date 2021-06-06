@@ -1,32 +1,33 @@
 <h1><%= @user.name %>さんのおすすめ</h1>
 
   <!-- ユーザー詳細ページにおすすめニュースを表示 -->
-  <% @recommend_news.each do |recommend_news| %>
+  <% @recommend_articles.each do |recommend_articles| %>
     <div class="toppage_kininaru_article">
       <div>
-        <div><%= link_to recommend_news.title, recommend_news.link, class:"kininaru_article_text" %></div>
+        <div><%= link_to recommend_articles.title, recommend_articles.link, class:"kininaru_article_text" %></div>
           <div class="logos_horizontal">
 
-            <div data-bs-toggle="modal" data-bs-target="#exampleModal<%= recommend_news.id %>">
+            <div data-bs-toggle="modal" data-bs-target="#exampleModal<%= recommend_articles.id %>">
               <i class="far fa-comment"></i>
             </div>
-            <%= link_to news_path(recommend_news.id, post: {recommend: false}), method: :put do %>
+            <%= link_to article_path(recommend_articles.id, post: {recommend: false}), method: :put do %>
               <div><i class="fas fa-star" style="color: orange;"></i></div>
             <% end %>
-            <div class = "heart_<%= recommend_news.id %>">
-              <%= render partial: 'favorites/heart', locals: { new: recommend_news } %>
+            <div class = "heart_<%= recommend_articles.id %>">
+              <%= render partial: 'favorites/heart', locals: { article: recommend_articles } %>
             </div>
-            <%= link_to news_path(recommend_news.id), method: :delete do %>
+            <%#= link_to article_path(recommend_articles.id), method: :delete do %>
+            <%= link_to article_path(recommend_articles.id), method: :delete do %>
               <div><i class="far fa-trash-alt"></i></div>
             <% end %>
-          </div>
+        </div>
       </div>
       <div>
-        <div><%= image_tag recommend_news.image, class:"kininaru_image" %></div>
+        <div><%= image_tag recommend_articles.image, class:"kininaru_image" %></div>
       </div>
     </div>
     <div class="balloon">
-      <%= recommend_news.comments.each do |recommend_comment| %>
+      <%= recommend_articles.comments.each do |recommend_comment| %>
         <%= recommend_comment.content %>
       <% end %>
     </div>
@@ -34,20 +35,20 @@
 
 
   <!-- 「おすすめニュース」のモーダル -->
-  <div class="modal fade" id="exampleModal<%= recommend_news.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModal<%= recommend_articles.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="Modal">
-            <div class="d-flex align-items-end"><%= link_to recommend_news.title, recommend_news.link %></div>
-            <div><%= image_tag recommend_news.image, class:"kininaru_image modal_image" %></div>
+            <div class="d-flex align-items-end"><%= link_to recommend_articles.title, recommend_articles.link %></div>
+            <div><%= image_tag recommend_articles.image, class:"kininaru_image modal_image" %></div>
           </h5>
         </div>
           <div class="modal-body">
             <p>
-              <% if recommend_news.user.image.url.present? %><%= image_tag recommend_news.user.image.url, class:"comment_user_image" %><% end %>
-              <%= recommend_news.user.name %>さんのコメント
-              <% if recommend_news.user == current_user %>
+              <% if recommend_articles.user.image.url.present? %><%= image_tag recommend_articles.user.image.url, class:"comment_user_image" %><% end %>
+              <%= recommend_articles.user.name %>さんのコメント
+              <% if recommend_articles.user == current_user %>
                 <!--<input type="button" class="comment_form_btn" value="コメント欄"> -->
                 <button class="comment_btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     コメント欄
@@ -55,20 +56,20 @@
               <% end %>
             </p>
             <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
-            <div id="comments_area<%= recommend_news.id %>">
-              <%= render partial: 'comments/index', locals: { comments: recommend_news.comments, new: recommend_news } %>
+            <div id="comments_area<%= recommend_articles.id %>">
+              <%= render partial: 'comments/index', locals: { comments: recommend_articles.comments, article: recommend_articles } %>
             </div>
 
-            <% if recommend_news.user == current_user %>
+            <% if recommend_articles.user == current_user %>
               <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
               <div class="collapse" id="collapseExample">
                 <div class="card card-body">
-                  <%= render partial: 'comments/form', locals: { comment: recommend_news.comments.build, new: recommend_news } %>
+                  <%= render partial: 'comments/form', locals: { comment: recommend_articles.comments.build, article: recommend_articles } %>
                 </div>
               </div>
 
               <!--<div class="collapse" id="collapseExample">
-                <<%= render partial: 'comments/form', locals: { comment: recommend_news.comments.build, new: recommend_news } %>
+                <<%= render partial: 'comments/form', locals: { comment: recommend_articles.comments.build, article: recommend_articles } %>
               </div> -->
 
               <!-- コメント入力欄の表示・非表示を切り替え -->
@@ -76,18 +77,18 @@
               </script>
               <script>
                 $('.comment_form_btn').click(function(){
-                  $('.comments_form<%= recommend_news.id %>').fadeToggle('slow');
+                  $('.comments_form<%= recommend_articles.id %>').fadeToggle('slow');
                 });
               </script>
             <% end %>
 
             <div class="testtesttest">
-            <% @favorite = current_user.favorites.find_by(new_id: recommend_news.id) %>
-            <% unless recommend_news.user_id == current_user.id %>
+            <% @favorite = current_user.favorites.find_by(article_id: recommend_articles.id) %>
+            <% unless recommend_articles.user_id == current_user.id %>
               <% if @favorite.present? %>
                 <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
               <% else %>
-                <%= link_to 'お気に入りする', favorites_path(new_id: recommend_news.id), method: :post, class: 'btn btn-primary' %>
+                <%= link_to 'お気に入りする', favorites_path(article_id: recommend_articles.id), method: :post, class: 'btn btn-primary' %>
               <% end %>
             <% end %>
             </div>
@@ -115,64 +116,64 @@
       </h2>
       <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
         <div class="accordion-body">
-          <% @user_news.each do |user_news| %>
-            <% if user_news.recommend == false %>
+          <% @user_articles.each do |user_articles| %>
+            <% if user_articles.recommend == false %>
             <div class="toppage_kininaru_article">
               <div>
-                <div><%= link_to user_news.title, user_news.link, class:"kininaru_article_text" %></div>
+                <div><%= link_to user_articles.title, user_articles.link, class:"kininaru_article_text" %></div>
                 <div class="logos_horizontal">
 
-                <div data-toggle="modal" data-target="#Modal<%= user_news.id %>">
+                <div data-toggle="modal" data-target="#Modal<%= user_articles.id %>">
                   <i class="far fa-comment"></i>
                 </div>
-                <%= link_to news_path(user_news.id, post: {recommend: true}), method: :put do %>
+                <%= link_to article_path(user_articles.id, post: {recommend: true}), method: :put do %>
                   <i class="far fa-star"></i>
                 <% end %>
-                <div class = "heart_<%= user_news.id %>">
-                  <%= render partial: 'favorites/heart', locals: { new: user_news } %>
+                <div class = "heart_<%= user_articles.id %>">
+                  <%= render partial: 'favorites/heart', locals: { article: user_articles } %>
                 </div>
-                <%= link_to news_path(user_news.id), method: :delete do %>
+                <%= link_to article_path(user_articles.id), method: :delete do %>
                   <div><i class="far fa-trash-alt"></i></div>
                 <% end %>
                 </div>
               </div>
               <div>
-                <div><%= image_tag user_news.image, class:"kininaru_image" %></div>
+                <div><%= image_tag user_articles.image, class:"kininaru_image" %></div>
               </div>
             </div>
             <% end %>
 
             <!-- 「気になる」したニュースのモーダル -->
-              <div class="modal fade" id="Modal<%= user_news.id %>" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+              <div class="modal fade" id="Modal<%= user_articles.id %>" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="Modal">
-                        <div class="d-flex align-items-end"><%= link_to user_news.title, user_news.link %></div>
-                        <div><%= image_tag user_news.image, class:"kininaru_image modal_image" %></div>
+                        <div class="d-flex align-items-end"><%= link_to user_articles.title, user_articles.link %></div>
+                        <div><%= image_tag user_articles.image, class:"kininaru_image modal_image" %></div>
                       </h5>
                     </div>
                     <div class="modal-body">
                       <p>
-                        <% if user_news.user.image.url.present? %><%= image_tag user_news.user.image.url, class:"comment_user_image" %><% end %>
-                        <%= user_news.user.name %>さんのコメント
+                        <% if user_articles.user.image.url.present? %><%= image_tag user_articles.user.image.url, class:"comment_user_image" %><% end %>
+                        <%= user_articles.user.name %>さんのコメント
                         <!--<input type="button" class="comment_form_btn" value="コメント欄"> -->
                         <button class="comment_btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                           コメント欄
                         </button>
                       </p>
                       <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
-                      <div id="comments_area<%= user_news.id %>">
-                        <%= render partial: 'comments/index', locals: { comments: user_news.comments, new: user_news } %>
+                      <div id="comments_area<%= user_articles.id %>">
+                        <%= render partial: 'comments/index', locals: { comments: user_articles.comments, article: user_articles } %>
                       </div>
                       <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
-                      <div style="display: none" class="comments_form<%= user_news.id %>">
-                        <%= render partial: 'comments/form', locals: { comment: user_news.comments.build, new: user_news } %>
+                      <div style="display: none" class="comments_form<%= user_articles.id %>">
+                        <%= render partial: 'comments/form', locals: { comment: user_articles.comments.build, article: user_articles } %>
                       </div>
 
                       <div class="collapse" id="collapseExample">
                         <div class="card card-body">
-                        <%= render partial: 'comments/form', locals: { comment: user_news.comments.build, new: user_news } %>
+                        <%= render partial: 'comments/form', locals: { comment: user_articles.comments.build, article: user_articles } %>
                         </div>
                       </div>
 
@@ -181,17 +182,17 @@
                       </script>
                       <script>
                         $('.comment_form_btn').click(function(){
-                          $('.comments_form<%= user_news.id %>').fadeToggle('slow');
+                          $('.comments_form<%= user_articles.id %>').fadeToggle('slow');
                         });
                       </script>
 
                       <div class="testtesttest">
-                      <% @favorite = current_user.favorites.find_by(new_id: user_news.id) %>
-                      <% unless user_news.user_id == current_user.id %>
+                      <% @favorite = current_user.favorites.find_by(article_id: user_articles.id) %>
+                      <% unless user_articles.user_id == current_user.id %>
                         <% if @favorite.present? %>
                           <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
                         <% else %>
-                          <%= link_to 'お気に入りする', favorites_path(new_id: user_news.id), method: :post, class: 'btn btn-primary' %>
+                          <%= link_to 'お気に入りする', favorites_path(article_id: user_articles.id), method: :post, class: 'btn btn-primary' %>
                         <% end %>
                       <% end %>
                       </div>
@@ -220,38 +221,38 @@
           <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
             <div class="accordion-body">
 
-            <% @favorite_news.each do |favorite_news| %>
+            <% @favorite_articles.each do |favorite_articles| %>
             <div class="toppage_kininaru_article">
               <div>
-                <div><%= link_to favorite_news.title, favorite_news.link, class:"kininaru_article_text" %></div>
+                <div><%= link_to favorite_articles.title, favorite_articles.link, class:"kininaru_article_text" %></div>
                 <div class="logos_horizontal">
-                  <div data-bs-toggle="modal" data-bs-target="#exampleModal<%= favorite_news.id %>">
+                  <div data-bs-toggle="modal" data-bs-target="#exampleModal<%= favorite_articles.id %>">
                     <i class="far fa-comment"></i>
                   </div>
-                  <div class = "heart_<%= favorite_news.id %>">
-                    <%= render partial: 'favorites/heart', locals: { new: favorite_news } %>
+                  <div class = "heart_<%= favorite_articles.id %>">
+                    <%= render partial: 'favorites/heart', locals: { article: favorite_articles } %>
                   </div>
                 </div>
               </div>
               <div>
-                <div><%= image_tag favorite_news.image, class:"kininaru_image" %></div>
+                <div><%= image_tag favorite_articles.image, class:"kininaru_image" %></div>
               </div>
             </div>
 
             <!-- お気に入りしたニュースのモーダル -->
-              <div class="modal fade" id="exampleModal<%= favorite_news.id %>" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+              <div class="modal fade" id="exampleModal<%= favorite_articles.id %>" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="Modal">
-                        <div class="d-flex align-items-end"><%= link_to favorite_news.title, favorite_news.link %></div>
-                        <div><%= image_tag favorite_news.image, class:"kininaru_image modal_image" %></div>
+                        <div class="d-flex align-items-end"><%= link_to favorite_articles.title, favorite_articles.link %></div>
+                        <div><%= image_tag favorite_articles.image, class:"kininaru_image modal_image" %></div>
                       </h5>
                     </div>
                     <div class="modal-body">
                       <p>
-                        <% if favorite_news.user.image.url.present? %><%= image_tag favorite_news.user.image.url, class:"comment_user_image" %><% end %>
-                        <%= favorite_news.user.name %>さんのコメント
+                        <% if favorite_articles.user.image.url.present? %><%= image_tag favorite_articles.user.image.url, class:"comment_user_image" %><% end %>
+                        <%= favorite_articles.user.name %>さんのコメント
                         <% if params[:id] == current_user.id %>
                           <!--<input type="button" class="comment_form_btn" value="コメント欄"> -->
                           <button class="comment_btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -261,21 +262,21 @@
                       </p>
 
                       <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
-                      <div id="comments_area<%= favorite_news.id %>">
-                        <%= render partial: 'comments/index', locals: { comments: favorite_news.comments, new: favorite_news } %>
+                      <div id="comments_area<%= favorite_articles.id %>">
+                        <%= render partial: 'comments/index', locals: { comments: favorite_articles.comments, article: favorite_articles } %>
                       </div>
 
                       <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
                       <% if params[:id] == current_user.id %>
                       <div class="modal_comments">
 
-                        <div style="display: none" class="comments_form<%= favorite_news.id %>">
-                          <%= render partial: 'comments/form', locals: { comment: favorite_news.comments.build, new: favorite_news } %>
+                        <div style="display: none" class="comments_form<%= favorite_articles.id %>">
+                          <%= render partial: 'comments/form', locals: { comment: favorite_articles.comments.build, article: favorite_articles } %>
                         </div>
 
                         <div class="collapse" id="collapseExample">
                           <div class="card card-body">
-                          <%= render partial: 'comments/form', locals: { comment: favorite_news.comments.build, new: favorite_news } %>
+                          <%= render partial: 'comments/form', locals: { comment: favorite_articles.comments.build, article: favorite_articles } %>
                           </div>
                         </div>
 
@@ -284,18 +285,18 @@
                         </script>
                         <script>
                           $('.comment_form_btn').click(function(){
-                            $('.comments_form<%= favorite_news.id %>').fadeToggle('slow');
+                            $('.comments_form<%= favorite_articles.id %>').fadeToggle('slow');
                           });
                         </script>
                       <% end %>
 
                       <div class="testtesttest">
-                      <% @favorite = current_user.favorites.find_by(new_id: favorite_news.id) %>
+                      <% @favorite = current_user.favorites.find_by(article_id: favorite_articles.id) %>
                       <% unless params[:id] == current_user.id %>
                         <% if @favorite.present? %>
                           <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
                         <% else %>
-                          <%= link_to 'お気に入りする', favorites_path(new_id: favorite_news.id), method: :post, class: 'btn btn-primary' %>
+                          <%= link_to 'お気に入りする', favorites_path(article_id: favorite_articles.id), method: :post, class: 'btn btn-primary' %>
                         <% end %>
                       <% end %>
                       </div>

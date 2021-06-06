@@ -1,0 +1,115 @@
+<% @articles.each do |article| %>
+<div class="toppage_kininaru_user">
+  <div>
+  <div class="toppage_kininaru_article">
+    <div>
+      <div><%= link_to article.title, article.link, class:"kininaru_article_text" %></div>
+      <div class="logos_horizontal">
+        <div data-bs-toggle="modal" data-bs-target="#exampleModal<%= article.id %>">
+          <i class="far fa-comment"></i>
+        </div>
+        <% if article.user_id == current_user.id %>
+          <%= link_to article_path(article.id), method: :delete do %>
+            <div><i class="far fa-trash-alt"></i></div>
+          <% end %>
+        <% end %>
+
+        <div class = "heart_<%= article.id %>">
+          <%= render partial: 'favorites/heart', locals: { article: article } %>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div><%= image_tag article.image, class:"kininaru_image" %></div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModal<%= article.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="Modal">
+            <div class="d-flex align-items-end"><%= link_to article.title, article.link %></div>
+            <div><%= image_tag article.image, class:"kininaru_image modal_image" %></div>
+          </h5>
+
+        </div>
+        <div class="modal-body">
+          <div>
+            <% if article.user.image.url.present? %>
+              <%= image_tag article.user.image.url, class:"comment_user_image" %>
+            <% end %>
+            <%= article.user.name %>さんのコメント
+            <% if article.user == current_user %>
+              <button class="comment_btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                  コメント欄
+              </button>
+            <% end %>
+          </div>
+
+        <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
+          <div id="comments_area<%= article.id %>">
+            <%= render partial: 'comments/index', locals: { comments: article.comments, article: article } %>
+          </div>
+
+        <% if article.user == current_user %>
+        <div class="modal_comments">
+        <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body">
+            <%= render partial: 'comments/form', locals: { comment: article.comments.build, article: article } %>
+          </div>
+        </div>
+
+          <!--<div class="collapse" id="collapseExample">
+            <<%= render partial: 'comments/form', locals: { comment: article.comments.build, article: article } %>
+          </div> -->
+
+          <!-- コメント入力欄の表示・非表示を切り替え -->
+          <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+          </script>
+          <script>
+            $('.comment_form_btn').click(function(){
+              $('.comments_form<%= article.id %>').fadeToggle('slow');
+            });
+          </script>
+        </div>
+        <% end %>
+
+
+          <div class="testtesttest">
+          <% if @favorite.present? %>
+            <%= link_to favorite_path(id: @favorite.id), method: :delete do %>
+              <% if current_user.favorited_by?(article.id) %>
+                <i class="fas fa-heart heart-red"></i>
+                <%= article.favorites.count %>
+              <% else %>
+                <i class="far fa-heart"></i>
+                <%= article.favorites.count %>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= link_to favorites_path(article_id: article.id), method: :post do %>
+              <% if current_user.favorited_by?(article.id) %>
+                <i class="fas fa-heart heart-red"></i>
+                <%= article.favorites.count %>
+              <% else %>
+                <i class="far fa-heart"></i>
+                <%= article.favorites.count %>
+              <% end %>
+            <% end %>
+          <% end %>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="comment_close_btn" data-dismiss="modal">閉じる</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<% end %>
+<div class="col-md-1">
+</div>

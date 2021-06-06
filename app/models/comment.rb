@@ -1,4 +1,4 @@
 class Comment < ApplicationRecord
-  belongs_to :new
+  belongs_to :article
   validates :content, presence: true
 end
