@@ -19,7 +19,7 @@ gem 'rails-i18n'
 gem 'fog-aws'
 gem 'dotenv-rails'
 gem 'unicorn' # アプリケーションサーバのunicorn
-gem 'mini_racer', platforms: :ruby # デプロイ時に必要
+gem 'mini_racer', '~> 0.4.0', platforms: :ruby
 gem 'ed25519'
 gem 'bcrypt_pbkdf'
 
@@ -28,7 +28,6 @@ group :development, :test do
   gem 'pry-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'dotenv-rails'
   gem 'spring'
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
@@ -45,7 +44,6 @@ end
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
