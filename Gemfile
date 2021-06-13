@@ -19,7 +19,7 @@ gem 'rails-i18n'
 gem 'fog-aws'
 gem 'dotenv-rails'
 gem 'unicorn' # アプリケーションサーバのunicorn
-gem 'mini_racer','0.4.0', platforms: :ruby # デプロイ時に必要
+gem 'mini_racer', platforms: :ruby # デプロイ時に必要
 gem 'ed25519'
 gem 'bcrypt_pbkdf'
 
