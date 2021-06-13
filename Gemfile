@@ -34,7 +34,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'launchy'
-  gem 'capistrano', '3.16.0' # capistranoのツール一式
+  gem 'capistrano', '3.6.0' # capistranoのツール一式
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
