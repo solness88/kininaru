@@ -1,5 +1,5 @@
 current directory: /Users/hirokoba/workspace/kininaru/vendor/bundle/ruby/2.6.0/gems/debug_inspector-1.1.0/ext/debug_inspector
-/Users/hirokoba/.rbenv/versions/2.6.5/bin/ruby -I /Users/hirokoba/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20210613-30233-1lq5adz.rb extconf.rb
+/Users/hirokoba/.rbenv/versions/2.6.5/bin/ruby -I /Users/hirokoba/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20210613-35653-pv2qzr.rb extconf.rb
 creating Makefile
 
 current directory: /Users/hirokoba/workspace/kininaru/vendor/bundle/ruby/2.6.0/gems/debug_inspector-1.1.0/ext/debug_inspector
@@ -12,4 +12,4 @@ linking shared-object debug_inspector.bundle
 
 current directory: /Users/hirokoba/workspace/kininaru/vendor/bundle/ruby/2.6.0/gems/debug_inspector-1.1.0/ext/debug_inspector
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 debug_inspector.bundle ./.gem.20210613-30233-rpgtv8
+/usr/bin/install -c -m 0755 debug_inspector.bundle ./.gem.20210613-35653-1tovdwv

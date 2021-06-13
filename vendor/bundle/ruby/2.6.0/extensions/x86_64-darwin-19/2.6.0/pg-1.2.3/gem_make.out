@@ -1,5 +1,5 @@
 current directory: /Users/hirokoba/workspace/kininaru/vendor/bundle/ruby/2.6.0/gems/pg-1.2.3/ext
-/Users/hirokoba/.rbenv/versions/2.6.5/bin/ruby -I /Users/hirokoba/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20210613-30233-1td6co1.rb extconf.rb
+/Users/hirokoba/.rbenv/versions/2.6.5/bin/ruby -I /Users/hirokoba/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20210613-35653-1eh897t.rb extconf.rb
 checking for pg_config... yes
 Using config values from /usr/local/bin/pg_config
 checking for libpq-fe.h... yes
@@ -150,4 +150,4 @@ linking shared-object pg_ext.bundle
 
 current directory: /Users/hirokoba/workspace/kininaru/vendor/bundle/ruby/2.6.0/gems/pg-1.2.3/ext
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 pg_ext.bundle ./.gem.20210613-30233-1dve3gp
+/usr/bin/install -c -m 0755 pg_ext.bundle ./.gem.20210613-35653-6xu9q4

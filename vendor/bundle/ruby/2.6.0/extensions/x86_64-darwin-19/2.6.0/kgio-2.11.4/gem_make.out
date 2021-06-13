@@ -1,5 +1,5 @@
 current directory: /Users/hirokoba/workspace/kininaru/vendor/bundle/ruby/2.6.0/gems/kgio-2.11.4/ext/kgio
-/Users/hirokoba/.rbenv/versions/2.6.5/bin/ruby -I /Users/hirokoba/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20210613-30233-1rlbvf4.rb extconf.rb
+/Users/hirokoba/.rbenv/versions/2.6.5/bin/ruby -I /Users/hirokoba/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20210613-35653-1hh1lr3.rb extconf.rb
 checking for CLOCK_MONOTONIC in time.h... yes
 checking for clockid_t in time.h... yes
 checking for clock_gettime() in -lrt... no
@@ -68,4 +68,4 @@ linking shared-object kgio_ext.bundle
 
 current directory: /Users/hirokoba/workspace/kininaru/vendor/bundle/ruby/2.6.0/gems/kgio-2.11.4/ext/kgio
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 kgio_ext.bundle ./.gem.20210613-30233-a5ay6w
+/usr/bin/install -c -m 0755 kgio_ext.bundle ./.gem.20210613-35653-92sixy

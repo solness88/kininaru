@@ -1,5 +1,5 @@
 current directory: /Users/hirokoba/workspace/kininaru/vendor/bundle/ruby/2.6.0/gems/raindrops-0.19.2/ext/raindrops
-/Users/hirokoba/.rbenv/versions/2.6.5/bin/ruby -I /Users/hirokoba/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20210613-30233-17kpirp.rb extconf.rb
+/Users/hirokoba/.rbenv/versions/2.6.5/bin/ruby -I /Users/hirokoba/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20210613-35653-hidaer.rb extconf.rb
 checking for mmap() in sys/mman.h... yes
 checking for munmap() in sys/mman.h... yes
 checking for mremap() in sys/mman.h... no
@@ -36,4 +36,4 @@ linking shared-object raindrops_ext.bundle
 
 current directory: /Users/hirokoba/workspace/kininaru/vendor/bundle/ruby/2.6.0/gems/raindrops-0.19.2/ext/raindrops
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 raindrops_ext.bundle ./.gem.20210613-30233-1hr09l5
+/usr/bin/install -c -m 0755 raindrops_ext.bundle ./.gem.20210613-35653-15mtvii

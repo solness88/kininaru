@@ -1,5 +1,5 @@
 current directory: /Users/hirokoba/workspace/kininaru/vendor/bundle/ruby/2.6.0/gems/mini_racer-0.4.0/ext/mini_racer_extension
-/Users/hirokoba/.rbenv/versions/2.6.5/bin/ruby -I /Users/hirokoba/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20210613-30233-blvf8t.rb extconf.rb
+/Users/hirokoba/.rbenv/versions/2.6.5/bin/ruby -I /Users/hirokoba/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20210613-35653-hdxm2k.rb extconf.rb
 checking for -lpthread... yes
 checking for -lobjc... yes
 creating Makefile
@@ -25,4 +25,4 @@ linking shared-object mini_racer_extension.bundle
 
 current directory: /Users/hirokoba/workspace/kininaru/vendor/bundle/ruby/2.6.0/gems/mini_racer-0.4.0/ext/mini_racer_extension
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 mini_racer_extension.bundle ./.gem.20210613-30233-1slpw2w
+/usr/bin/install -c -m 0755 mini_racer_extension.bundle ./.gem.20210613-35653-fes863

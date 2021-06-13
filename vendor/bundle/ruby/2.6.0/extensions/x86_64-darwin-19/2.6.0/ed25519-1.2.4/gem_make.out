@@ -1,5 +1,5 @@
 current directory: /Users/hirokoba/workspace/kininaru/vendor/bundle/ruby/2.6.0/gems/ed25519-1.2.4/ext/ed25519_ref10
-/Users/hirokoba/.rbenv/versions/2.6.5/bin/ruby -I /Users/hirokoba/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20210613-30233-1cl5n13.rb extconf.rb
+/Users/hirokoba/.rbenv/versions/2.6.5/bin/ruby -I /Users/hirokoba/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20210613-35653-juo16b.rb extconf.rb
 creating Makefile
 
 current directory: /Users/hirokoba/workspace/kininaru/vendor/bundle/ruby/2.6.0/gems/ed25519-1.2.4/ext/ed25519_ref10
@@ -30,4 +30,4 @@ linking shared-object ed25519_ref10.bundle
 
 current directory: /Users/hirokoba/workspace/kininaru/vendor/bundle/ruby/2.6.0/gems/ed25519-1.2.4/ext/ed25519_ref10
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 ed25519_ref10.bundle ./.gem.20210613-30233-1e2prp9
+/usr/bin/install -c -m 0755 ed25519_ref10.bundle ./.gem.20210613-35653-1pxq73o
