@@ -18,7 +18,7 @@ gem 'bcrypt'
 gem 'rails-i18n'
 gem 'fog-aws'
 gem 'dotenv-rails'
-gem 'unicorn' # アプリケーションサーバのunicorn
+gem 'unicorn', '6.0.0' # アプリケーションサーバのunicorn
 gem 'mini_racer', '~> 0.4.0', platforms: :ruby
 gem 'ed25519'
 gem 'bcrypt_pbkdf'
