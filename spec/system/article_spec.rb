@@ -39,6 +39,7 @@ RSpec.describe 'ニュース保存機能', type: :system do
       before do
         #user = FactoryBot.create(:user)
         admin_user = FactoryBot.create(:admin_user)
+        admin_user2 = FactoryBot.create(:admin_user2)
         FactoryBot.create(:article, user: admin_user)
         visit new_session_path
         fill_in 'Email', with: 'admin-guest@admin-guest.com'

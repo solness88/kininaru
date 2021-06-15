@@ -14,43 +14,46 @@
   </head>
 
   <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-    <div class="container-fluid">
-      <a class="header_item"><%= link_to "気になるニュース", articles_path, class:"header_item navbar-brand header_hello" %></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <% if logged_in? %>
-          <li class="nav-item">
-              <%= link_to "#{current_user.name}さんのマイページ", user_path(current_user.id), class:"header_item" %>
-          </li>
-          <% end %>
-          <li class="nav-item">
-              <% if current_user && current_user.admin? %>
-                <%= link_to "メンバーの一覧", admin_users_path, class:"header_item" %>
-              <% else %>
-                <%= link_to "メンバーの一覧", users_path, class:"header_item" %>
-              <% end %>
-          </li>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+      <div class="container-fluid">
+        <a class="header_item"><%= link_to "気になるニュース", root_path, class:"header_item navbar-brand header_hello" %></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <% if logged_in? %>
+            <li class="nav-item">
+                <%= link_to "#{current_user.name}さんのマイページ", user_path(current_user.id), class:"header_item" %>
+            </li>
+            <li class="nav-item">
+                <%= link_to "気になるニュース一覧", articles_path, class:"header_item" %>
+            </li>
+            <% end %>
+            <li class="nav-item">
+                <% if current_user && current_user.admin? %>
+                  <%= link_to "メンバーの一覧", admin_users_path, class:"header_item" %>
+                <% else %>
+                  <%= link_to "メンバーの一覧", users_path, class:"header_item" %>
+                <% end %>
+            </li>
 
-      <% if current_user && current_user.admin? %>
-      <li class="nav-item">
-          <%= link_to "メンバーを追加", new_admin_user_path, class:"header_item" %>
-      </li>
-      <% end %>
+        <% if current_user && current_user.admin? %>
+        <li class="nav-item">
+            <%= link_to "メンバーを追加", new_admin_user_path, class:"header_item" %>
+        </li>
+        <% end %>
 
-      <li class="nav-item">
-      <% if logged_in? %>
-        <%= link_to "ログアウト", session_path(current_user.id), method: :delete, class:"header_item logout" %>
-      <% else %>
-        <%= link_to "ログイン", new_session_path, class:"header_item" %>
-      </li>
-      <% end %>
-    </ul>
-  </div>
-</nav>
+        <li class="nav-item">
+        <% if logged_in? %>
+          <%= link_to "ログアウト", session_path(current_user.id), method: :delete, class:"header_item logout" %>
+        <% else %>
+          <%= link_to "ログイン", new_session_path, class:"header_item" %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
 
     <div class="container-fluid body_part">
       <div class="row">
@@ -89,14 +92,14 @@
 
           <%= yield %>
 
-      </div>
+      　</div>
 
       </div>
     </div>
 
 
     <footer>
-      <p>気になるニュース</p>
+      <p>気になるニュース from <%= link_to "NewsCatcher", "https://newscatcherapi.com", class:"footer_link" %></p>
       <p>© 2021 Kininaru News</p>
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

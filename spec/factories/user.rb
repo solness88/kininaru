@@ -23,6 +23,12 @@ FactoryBot.define do
     admin {true}
   end
 
-
+  factory :admin_user2, class: User do
+    name {'admin2'}
+    email {'admin-guest2@admin-guest2.com'}
+    password {'123qwe'}
+    password_confirmation {'123qwe'}
+    admin {true}
+  end
 
 end

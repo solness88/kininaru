@@ -24,6 +24,8 @@
    text-align: center;
    background-color: #f0f5f5;
    font-size: 1.45rem;
+   padding-bottom: 100px;
+
  }
 
  li{
@@ -97,6 +99,9 @@
  .navbar-light .navbar-brand {
     color: white;
     font-size: 16px;
+}
+.navbar-light .navbar-toggler {
+    background-color:#ffffff;
 }
 
 .nav-item{
@@ -179,6 +184,10 @@
  .FREE_NEWS_article{
    text-decoration: none;
    color: #343B54;
+   overflow: hidden;
+   height: 5.2em;
+   font-size: 15px;
+   line-height: 1.3;
  }
 
  .kininaru_button{
@@ -200,3 +209,8 @@
    position: absolute;
    bottom: 0;
  }
+
+.footer_link{
+   text-decoration: none;
+   color:#ffffff;
+}
