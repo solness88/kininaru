@@ -6,6 +6,7 @@ class ArticlesController < ApplicationController
   end
 
   def index
+    raise
     @articles = Article.all.order(id: "DESC")
     @articles_length = @articles.length
   end

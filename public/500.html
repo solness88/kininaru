@@ -5,22 +5,46 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
   .error {
-    padding-top: 16%
+    padding-top: 5%
   }
-  p{
-    text-align: center;
-  }
-  img{
-    display: block;
-    margin: 0 auto;
-  }
-  </style>
+    p{
+      text-align: center;
+    }
+    .error_500 {
+      font-size: 10rem;
+      color: blue;
+      margin-bottom: 0;
+      padding-bottom: 0px;
+    }
+
+    .error_500_letter{
+      font-size: 3.5rem;
+      margin-top: 0;
+      margin-bottom: 2rem;
+      color: blue;
+    }
+
+    .error_sentence{
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    img{
+      display: block;
+      margin: 0 auto;
+    }
+    </style>
 </head>
 <body>
   <!-- This file lives in public/500.html -->
   <div class="error">
-    <img src="/images/500.png">
-    <p>Internal Server Error</p>
+    <!--<img src="/images/404.png">-->
+    <div class="error_border">
+      <p class="error_500">500</p>
+      <p class="error_500_letter">ERROR</p>
+    </div>
+    <p class="error_sentence">Internal Server Error</p>
+    <p class="error_sentence">アクセスしようとしたページは表示できません。</p>
   </div>
 </body>
 </html>
