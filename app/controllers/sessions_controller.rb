@@ -3,6 +3,9 @@ class SessionsController < ApplicationController
   skip_before_action :login_required, only: [:new, :create, :adminguest, :guest]
 
   def new
+    if logged_in?
+      redirect_to users_path 
+    end
   end
 
   def create

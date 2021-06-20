@@ -210,6 +210,10 @@
    bottom: 0;
  }
 
+ footer p{
+   text-align: center;
+ }
+
 .footer_link{
    text-decoration: none;
    color:#ffffff;

@@ -8,6 +8,11 @@
     </div>
     <div class="user_edit_delete">
       <div class="user_name"><%= link_to user.name, user_path(user.id) %></div>
+      <% if user == current_user %>
+      <div  class="edit_delete">
+        <div><%= link_to '編集', edit_user_path(user.id), class:"user_edit_btn" %></div>
+      </div>
+      <% end %>
     </div>
   </div>
   <% end %>

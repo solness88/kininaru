@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :articlesapi
-  skip_before_action :login_required, only: [:show, :edit, :update, :destroy]
+  skip_before_action :login_required, only: [:new, :show, :edit, :update, :destroy, :create]
 
   def index
     @users = User.all
@@ -13,19 +13,21 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to admin_users_path
+      session[:user_id] = @user.id
+      redirect_to users_path
     else
       render :new
     end
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to admin_users_path, notice: "ユーザーを編集しました"
+      redirect_to users_path, notice: "ユーザーを編集しました"
     else
       render :edit
     end

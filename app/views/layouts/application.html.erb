@@ -33,15 +33,19 @@
             <li class="nav-item">
                 <% if current_user && current_user.admin? %>
                   <%= link_to "メンバーの一覧", admin_users_path, class:"header_item" %>
-                <% else %>
+                <% elsif current_user.present? %>
                   <%= link_to "メンバーの一覧", users_path, class:"header_item" %>
                 <% end %>
             </li>
 
         <% if current_user && current_user.admin? %>
-        <li class="nav-item">
-            <%= link_to "メンバーを追加", new_admin_user_path, class:"header_item" %>
-        </li>
+          <li class="nav-item">
+              <%= link_to "メンバーを追加", new_admin_user_path, class:"header_item" %>
+          </li>
+        <% elsif current_user.nil? %>
+          <li class="nav-item">
+              <%= link_to "サインアップ", new_user_path, class:"header_item" %>
+          </li>
         <% end %>
 
         <li class="nav-item">
@@ -99,7 +103,7 @@
 
 
     <footer>
-      <p>ああああ気になるニュース from <%= link_to "NewsCatcher", "https://newscatcherapi.com", class:"footer_link" %></p>
+      <p>気になるニュース from <%= link_to "NewsCatcher", "https://newscatcherapi.com", class:"footer_link" %></p>
       <p>© 2021 Kininaru News</p>
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
